@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import spring.config.Collector;
-import spring.dto.CTDDHDTO;
 import spring.dto.DDHDTO;
 import spring.entity.DDHEntity;
 import spring.dto.ObjLong;
@@ -37,13 +35,20 @@ public class DDHAPI {
 		List<DDHDTO> listDTO = new ArrayList<DDHDTO>();
 		for (DDHEntity model : list) {
 			DDHDTO save = new DDHDTO();
-			save.setId(model.getId());
-			save.setKhThucHien(model.getKhThucHien().getMaKH());
-			save.setNgayThucHien(model.getNgayThucHien());
-			System.out.println(model.getNvThucHien());
+			if (model.getKhThucHien() != null)
+				save.setKhThucHien(model.getKhThucHien().getMaKH());
 			if (model.getNvThucHien() != null)
 				save.setNvThucHien(model.getNvThucHien().getMaNV());
+			save.setNgayThucHien(model.getNgayThucHien());
+			save.setId(model.getId());
 			save.setTinhTrang(model.getTinhTrang());
+			save.setDkgh(model.getDkgh());
+			save.setDknh(model.getDknh());
+			save.setIsfcl(model.getIsfcl());
+			save.setLuuY(model.getMoTaHH());
+			save.setMoTaHH(model.getMoTaHH());
+			save.setNhomHang(model.getNhomHang());
+			save.setTgkh(model.getTgkh());
 
 			listDTO.add(save);
 		}
@@ -57,13 +62,21 @@ public class DDHAPI {
 		DDHEntity save = new DDHEntity();
 		DDHEntity check = null;
 		try {
-			save.setKhThucHien(khRepo.findById(model.getKhThucHien()).get());
-			save.setNgayThucHien(model.getNgayThucHien());
-			if (model.getNvThucHien() != null) {
+			if (model.getKhThucHien() != null)
+				save.setKhThucHien(khRepo.findById(model.getKhThucHien()).get());
+			if (model.getNvThucHien() != null) 
 				save.setNvThucHien(nvRepo.findById(model.getNvThucHien()).get());
-
-			}
+			save.setNgayThucHien(model.getNgayThucHien());
 			save.setTinhTrang(model.getTinhTrang());
+			
+			save.setDkgh(model.getDkgh());
+			save.setDknh(model.getDknh());
+			save.setIsfcl(model.getIsfcl());
+			save.setLuuY(model.getMoTaHH());
+			save.setMoTaHH(model.getMoTaHH());
+			save.setNhomHang(model.getNhomHang());
+			save.setTgkh(model.getTgkh());
+			
 			check = repo.save(save);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,12 +88,6 @@ public class DDHAPI {
 			return "02";
 		} else {
 			String flag = "00";
-			for (CTDDHDTO item : model.getCtddhs()) {
-				item.setDdh(check.getId());
-				item.setId(0l);
-				flag = Collector.postMess("/ctddh", item);
-			}
-
 			return flag;
 		}
 	}
@@ -101,15 +108,21 @@ public class DDHAPI {
 			DDHEntity check = null;
 			try {
 
-				save.setId(model.getId());
-
-				save.setKhThucHien(khRepo.findById(model.getKhThucHien()).get());
-				save.setNgayThucHien(model.getNgayThucHien());
-				if (model.getNvThucHien() != null) {
-
+				if (model.getKhThucHien() != null)
+					save.setKhThucHien(khRepo.findById(model.getKhThucHien()).get());
+				if (model.getNvThucHien() != null) 
 					save.setNvThucHien(nvRepo.findById(model.getNvThucHien()).get());
-				}
+				save.setNgayThucHien(model.getNgayThucHien());
 				save.setTinhTrang(model.getTinhTrang());
+				
+				save.setDkgh(model.getDkgh());
+				save.setDknh(model.getDknh());
+				save.setIsfcl(model.getIsfcl());
+				save.setLuuY(model.getMoTaHH());
+				save.setMoTaHH(model.getMoTaHH());
+				save.setNhomHang(model.getNhomHang());
+				save.setTgkh(model.getTgkh());
+
 				check = repo.save(save);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -128,14 +141,11 @@ public class DDHAPI {
 	public String delete(@RequestBody ObjLong ids) {
 		Optional<DDHEntity> option = repo.findById(ids.getObjLong());
 		if (option.isEmpty()) {
-
 			System.out.print("ko tồn tại");
 			return "404";
 		} else {
 			System.out.print("tồn tại");
-
 			try {
-
 				repo.deleteById(ids.getObjLong());
 			} catch (Exception e) {
 				e.printStackTrace();

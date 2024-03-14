@@ -23,7 +23,7 @@ public class SanPhamAPI {
 	@Autowired
 	SanPhamRepository repo;
 	@Autowired
-	NhanVienRepository nvrepo;
+	NhanVienRepository nvRepo;
 	
 
 
@@ -37,7 +37,7 @@ public class SanPhamAPI {
 			save.setNvTao(model.getNvTao().getMaNV());
 
 			save.setIcon(model.getIcon());
-			save.setID(model.getId());
+			save.setId(model.getId());
 			save.setTen(model.getTen());
 			save.setTrangThai(1);
 			save.setMoTa(model.getMoTa());
@@ -75,11 +75,34 @@ public class SanPhamAPI {
 		SanPhamEntity save = new SanPhamEntity();
 		SanPhamEntity check = null;
 		try {
+			if (model.getNvTao() != null) {
+				save.setNvTao(nvRepo.findById(model.getNvTao()).get());
+
+			}
 
 			save.setIcon(model.getIcon());
 			save.setTen(model.getTen());
 			save.setTrangThai(1);
 			save.setMoTa(model.getMoTa());
+			save.setCuocvc(model.getCuocvc());
+			save.setDVVC(model.getDVVC());
+			save.setEtd(model.getEtd());
+			save.setLoai(model.getLoai());
+			save.setNoiDen(model.getNoiDen());
+			save.setNoiDi(model.getNoiDi());
+			save.setNotePhiDen(model.getNotePhiDen());
+			save.setNotePhiDi(model.getNotePhiDi());
+			save.setPhiDenBl(model.getPhiDenBl());
+			save.setPhiDenCMB(model.getPhiDenCMB());
+			save.setPhiDenCont(model.getPhiDenCont());
+			save.setPhiDenSet(model.getPhiDenSet());
+			save.setPhiDiBl(model.getPhiDiBl());
+			save.setPhiDiCMB(model.getPhiDiCMB());
+			save.setPhiDiCont(model.getPhiDiCont());
+			save.setPhiDiSet(model.getPhiDiSet());
+			save.setTen(model.getTen());
+			save.setTgvc(model.getTgvc());
+			save.setTrangThai(model.getTrangThai());
 
 			check = repo.save(save);
 		} catch (Exception e) {
@@ -98,7 +121,7 @@ public class SanPhamAPI {
 	@PutMapping(value = "/sanpham")
 	public String updateSP(@RequestBody SanPhamDTO model) {
 
-		Optional<SanPhamEntity> nvoption = repo.findById(model.getID());
+		Optional<SanPhamEntity> nvoption = repo.findById(model.getId());
 		if (nvoption.isEmpty()) {
 
 			System.out.print("ko tồn tại sp");
@@ -111,12 +134,34 @@ public class SanPhamAPI {
 			SanPhamEntity check = null;
 			try {
 
-				if (model.getIcon()!=null && !model.getIcon().equals(""))
+				if (model.getNvTao() != null) {
+					save.setNvTao(nvRepo.findById(model.getNvTao()).get());
+
+				}
+
 				save.setIcon(model.getIcon());
-				save.setId(model.getID());
 				save.setTen(model.getTen());
 				save.setTrangThai(1);
 				save.setMoTa(model.getMoTa());
+				save.setCuocvc(model.getCuocvc());
+				save.setDVVC(model.getDVVC());
+				save.setEtd(model.getEtd());
+				save.setLoai(model.getLoai());
+				save.setNoiDen(model.getNoiDen());
+				save.setNoiDi(model.getNoiDi());
+				save.setNotePhiDen(model.getNotePhiDen());
+				save.setNotePhiDi(model.getNotePhiDi());
+				save.setPhiDenBl(model.getPhiDenBl());
+				save.setPhiDenCMB(model.getPhiDenCMB());
+				save.setPhiDenCont(model.getPhiDenCont());
+				save.setPhiDenSet(model.getPhiDenSet());
+				save.setPhiDiBl(model.getPhiDiBl());
+				save.setPhiDiCMB(model.getPhiDiCMB());
+				save.setPhiDiCont(model.getPhiDiCont());
+				save.setPhiDiSet(model.getPhiDiSet());
+				save.setTen(model.getTen());
+				save.setTgvc(model.getTgvc());
+				save.setTrangThai(model.getTrangThai());
 
 				check = repo.save(save);
 			} catch (Exception e) {

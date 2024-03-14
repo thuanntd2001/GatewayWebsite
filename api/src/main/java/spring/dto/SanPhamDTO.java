@@ -2,7 +2,7 @@ package spring.dto;
 
 public class SanPhamDTO {
 	
-	private Long ID;
+	private Long id;
 
 	private Long nvTao;
 
@@ -46,12 +46,14 @@ public class SanPhamDTO {
 	
 	private Integer etd;
 
-	public Long getID() {
-		return ID;
+
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setID(Long iD) {
-		ID = iD;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getIcon() {
