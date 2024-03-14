@@ -67,6 +67,8 @@ public class NhanVienEntity {
 	@OneToMany(mappedBy = "nvThucHien", fetch = FetchType.LAZY)
 	private Collection<DDHEntity> ddhs;
 	
+	@OneToMany(mappedBy = "nvTao", fetch = FetchType.LAZY)
+	private Collection<SanPhamEntity> sps;
 	
 	@Column(name="USERNAME")
 	private String userName;

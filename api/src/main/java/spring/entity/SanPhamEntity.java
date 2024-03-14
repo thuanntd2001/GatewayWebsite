@@ -8,54 +8,81 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name="SANPHAM")
+@Table(name = "SANPHAM")
 public class SanPhamEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Long id;
-
-	@Column(name = "GIA")
-	private Integer gia;
 	
+	@ManyToOne
+	@JoinColumn(name = "NVTAO")
+	private NhanVienEntity nvTao;
 	
-
-	@Column(name = "SOLUONGTON")
-	private Integer slTon;
-
-	@Column(name = "DONVITINH")
-	private String dvt;
+	@Column(name = "LOAI")
+	private Long loai;
 
 	@Column(name = "TEN")
 	private String ten;
 
-	public String getTen() {
-		return ten;
-	}
-
-	public void setTen(String ten) {
-		this.ten = ten;
-	}
-
 	@Column(name = "ICON")
 	private String icon;
 
-
 	@Column(name = "TRANGTHAI")
 	private Integer trangThai;
-	
-	
+
 	@Column(name = "MOTA")
-	@Type(type="text")
+	@Type(type = "text")
 	private String moTa;
 	
-	@ManyToOne
-	@JoinColumn(name="LOAI")
-	private LoaiSPEntity loaiSP;
+	
+	@Column(name = "NOIDI")
+	private String noiDi;	
+	@Column(name = "NOIDEN")
+	private String noiDen;
+	
+	
+	
+	@Column(name = "PHIDICMB")
+	private Integer phiDiCMB;
+	@Column(name = "PHIDENCMB")
+	private Integer phiDenCMB;
+
+	@Column(name = "PHIDISET")
+	private Integer phiDiSet;
+	@Column(name = "PHIDENSET")
+	private Integer phiDenSet;
+
+	@Column(name = "PHIDICONT")
+	private Integer phiDiCont;
+	@Column(name = "PHIDENCONT")
+	private Integer phiDenCont;
+
+	@Column(name = "PHIDIBL")
+	private Integer phiDiBl;
+	@Column(name = "PHIDENBL")
+	private Integer phiDenBl;
+	
+	
+	@Column(name = "NOTEPHIDI")
+	private String notePhiDi;
+	@Column(name = "NOTEPHIDEN")
+	private String notePhiDen;
+	
+	@Column(name = "DVVC")
+	private String DVVC;
+	
+	@Column(name = "CUOCVC")
+	private Integer cuocvc;
+	
+	@Column(name = "TGVC")
+	private Integer tgvc;
+	
+	@Column(name = "ETD")
+	private Integer etd;
 
 	public Long getId() {
 		return id;
@@ -65,36 +92,20 @@ public class SanPhamEntity {
 		this.id = id;
 	}
 
-	public Integer getGia() {
-		return gia;
+	public Long getLoai() {
+		return loai;
 	}
 
-	public void setGia(Integer gia) {
-		this.gia = gia;
+	public void setLoai(Long loai) {
+		this.loai = loai;
 	}
 
-	public String getMoTa() {
-		return moTa;
+	public String getTen() {
+		return ten;
 	}
 
-	public void setMoTa(String moTa) {
-		this.moTa = moTa;
-	}
-
-	public Integer getSlTon() {
-		return slTon;
-	}
-
-	public void setSlTon(Integer slTon) {
-		this.slTon = slTon;
-	}
-
-	public String getDvt() {
-		return dvt;
-	}
-
-	public void setDvt(String dvTinh) {
-		this.dvt = dvTinh;
+	public void setTen(String ten) {
+		this.ten = ten;
 	}
 
 	public String getIcon() {
@@ -113,19 +124,149 @@ public class SanPhamEntity {
 		this.trangThai = trangThai;
 	}
 
-	public LoaiSPEntity getLoaiSP() {
-		return loaiSP;
+	public String getMoTa() {
+		return moTa;
 	}
 
-	public void setLoaiSP(LoaiSPEntity loaiSP) {
-		this.loaiSP = loaiSP;
+	public void setMoTa(String moTa) {
+		this.moTa = moTa;
 	}
 
-//	@OneToMany(mappedBy = "nvThucHien", fetch = FetchType.LAZY)
-//	private Collection<HoaDonEntity> hoadon;
-//
-//	@OneToMany(mappedBy = "nvTao", fetch = FetchType.LAZY)
-//	private Collection<ChiPhiEntity> chiPhi;
-	
+	public String getNoiDi() {
+		return noiDi;
+	}
+
+	public void setNoiDi(String noiDi) {
+		this.noiDi = noiDi;
+	}
+
+	public String getNoiDen() {
+		return noiDen;
+	}
+
+	public void setNoiDen(String noiDen) {
+		this.noiDen = noiDen;
+	}
+
+	public Integer getPhiDiCMB() {
+		return phiDiCMB;
+	}
+
+	public void setPhiDiCMB(Integer phiDiCMB) {
+		this.phiDiCMB = phiDiCMB;
+	}
+
+	public Integer getPhiDenCMB() {
+		return phiDenCMB;
+	}
+
+	public void setPhiDenCMB(Integer phiDenCMB) {
+		this.phiDenCMB = phiDenCMB;
+	}
+
+	public Integer getPhiDiSet() {
+		return phiDiSet;
+	}
+
+	public void setPhiDiSet(Integer phiDiSet) {
+		this.phiDiSet = phiDiSet;
+	}
+
+	public Integer getPhiDenSet() {
+		return phiDenSet;
+	}
+
+	public void setPhiDenSet(Integer phiDenSet) {
+		this.phiDenSet = phiDenSet;
+	}
+
+	public Integer getPhiDiCont() {
+		return phiDiCont;
+	}
+
+	public void setPhiDiCont(Integer phiDiCont) {
+		this.phiDiCont = phiDiCont;
+	}
+
+	public Integer getPhiDenCont() {
+		return phiDenCont;
+	}
+
+	public void setPhiDenCont(Integer phiDenCont) {
+		this.phiDenCont = phiDenCont;
+	}
+
+	public Integer getPhiDiBl() {
+		return phiDiBl;
+	}
+
+	public void setPhiDiBl(Integer phiDiBl) {
+		this.phiDiBl = phiDiBl;
+	}
+
+	public Integer getPhiDenBl() {
+		return phiDenBl;
+	}
+
+	public void setPhiDenBl(Integer phiDenBl) {
+		this.phiDenBl = phiDenBl;
+	}
+
+	public String getNotePhiDi() {
+		return notePhiDi;
+	}
+
+	public void setNotePhiDi(String notePhiDi) {
+		this.notePhiDi = notePhiDi;
+	}
+
+	public String getNotePhiDen() {
+		return notePhiDen;
+	}
+
+	public void setNotePhiDen(String notePhiDen) {
+		this.notePhiDen = notePhiDen;
+	}
+
+	public String getDVVC() {
+		return DVVC;
+	}
+
+	public void setDVVC(String dVVC) {
+		DVVC = dVVC;
+	}
+
+	public Integer getCuocvc() {
+		return cuocvc;
+	}
+
+	public void setCuocvc(Integer cuocvc) {
+		this.cuocvc = cuocvc;
+	}
+
+	public Integer getTgvc() {
+		return tgvc;
+	}
+
+	public void setTgvc(Integer tgvc) {
+		this.tgvc = tgvc;
+	}
+
+	public Integer getEtd() {
+		return etd;
+	}
+
+	public void setEtd(Integer etd) {
+		this.etd = etd;
+	}
+
+	public NhanVienEntity getNvTao() {
+		return nvTao;
+	}
+
+	public void setNvTao(NhanVienEntity nvTao) {
+		this.nvTao = nvTao;
+	}
+
 	
 }

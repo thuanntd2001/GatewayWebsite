@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import spring.dto.SanPhamDTO;
 import spring.entity.SanPhamEntity;
 import spring.dto.ObjLong;
-import spring.repository.LoaiSPRepository;
+import spring.repository.NhanVienRepository;
 import spring.repository.SanPhamRepository;
 
 @RestController
@@ -23,7 +23,8 @@ public class SanPhamAPI {
 	@Autowired
 	SanPhamRepository repo;
 	@Autowired
-	LoaiSPRepository loaiRepo;
+	NhanVienRepository nvrepo;
+	
 
 
 	@GetMapping("/sanpham")
@@ -32,15 +33,35 @@ public class SanPhamAPI {
 		List<SanPhamDTO> listDTO = new ArrayList<SanPhamDTO>();
 		for (SanPhamEntity model: list) {
 			SanPhamDTO save = new SanPhamDTO();
-			save.setDvt(model.getDvt());
-			save.setGia(model.getGia());
+			
+			save.setNvTao(model.getNvTao().getMaNV());
+
 			save.setIcon(model.getIcon());
 			save.setID(model.getId());
-			save.setLoai(model.getLoaiSP().getId());
-			save.setSlTon(model.getSlTon());
 			save.setTen(model.getTen());
 			save.setTrangThai(1);
 			save.setMoTa(model.getMoTa());
+			save.setCuocvc(model.getCuocvc());
+			save.setDVVC(model.getDVVC());
+			save.setEtd(model.getEtd());
+			save.setLoai(model.getLoai());
+			save.setNoiDen(model.getNoiDen());
+			save.setNoiDi(model.getNoiDi());
+			save.setNotePhiDen(model.getNotePhiDen());
+			save.setNotePhiDi(model.getNotePhiDi());
+			save.setPhiDenBl(model.getPhiDenBl());
+			save.setPhiDenCMB(model.getPhiDenCMB());
+			save.setPhiDenCont(model.getPhiDenCont());
+			save.setPhiDenSet(model.getPhiDenSet());
+			save.setPhiDiBl(model.getPhiDiBl());
+			save.setPhiDiCMB(model.getPhiDiCMB());
+			save.setPhiDiCont(model.getPhiDiCont());
+			save.setPhiDiSet(model.getPhiDiSet());
+			save.setTen(model.getTen());
+			save.setTgvc(model.getTgvc());
+			save.setTrangThai(model.getTrangThai());
+	
+			
 			
 			listDTO.add(save);
 		}
@@ -54,11 +75,8 @@ public class SanPhamAPI {
 		SanPhamEntity save = new SanPhamEntity();
 		SanPhamEntity check = null;
 		try {
-			save.setDvt(model.getDvt());
-			save.setGia(model.getGia());
+
 			save.setIcon(model.getIcon());
-			save.setLoaiSP(loaiRepo.findById(model.getLoai()).get());
-			save.setSlTon(model.getSlTon());
 			save.setTen(model.getTen());
 			save.setTrangThai(1);
 			save.setMoTa(model.getMoTa());
@@ -93,13 +111,9 @@ public class SanPhamAPI {
 			SanPhamEntity check = null;
 			try {
 
-				save.setDvt(model.getDvt());
-				save.setGia(model.getGia());
 				if (model.getIcon()!=null && !model.getIcon().equals(""))
 				save.setIcon(model.getIcon());
 				save.setId(model.getID());
-				save.setLoaiSP(loaiRepo.findById(model.getLoai()).get());
-				save.setSlTon(model.getSlTon());
 				save.setTen(model.getTen());
 				save.setTrangThai(1);
 				save.setMoTa(model.getMoTa());
