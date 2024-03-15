@@ -35,6 +35,10 @@ public class DDHEntity {
 	@ManyToOne
 	@JoinColumn(name = "MAKH")
 	private KhachHangEntity khThucHien;
+	
+	@ManyToOne
+	@JoinColumn(name = "SANPHAM")
+	private SanPhamEntity sanPham;
 
 	@Column(name = "TINHTRANG")
 	private Integer tinhTrang;

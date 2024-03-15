@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.33, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.35, for Linux (x86_64)
 --
--- Host: localhost    Database: kinhdoanh
+-- Host: localhost    Database: gateway
 -- ------------------------------------------------------
--- Server version	8.0.33-0ubuntu0.22.04.2
+-- Server version	8.0.35-0ubuntu0.22.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,7 +26,7 @@ CREATE TABLE `chucvu` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `tenchucvu` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,62 +35,8 @@ CREATE TABLE `chucvu` (
 
 LOCK TABLES `chucvu` WRITE;
 /*!40000 ALTER TABLE `chucvu` DISABLE KEYS */;
-INSERT INTO `chucvu` VALUES (1,'admin'),(2,'user');
+INSERT INTO `chucvu` VALUES (1,'ADMIN'),(2,'SALES'),(3,'DOCS');
 /*!40000 ALTER TABLE `chucvu` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ctddh`
---
-
-DROP TABLE IF EXISTS `ctddh`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ctddh` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `danhgia` longtext,
-  `diem` int DEFAULT NULL,
-  `soluong` int DEFAULT NULL,
-  `tongtien` int DEFAULT NULL,
-  `maddh` bigint DEFAULT NULL,
-  `sanpham` bigint DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ctddh`
---
-
-LOCK TABLES `ctddh` WRITE;
-/*!40000 ALTER TABLE `ctddh` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ctddh` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ctpn`
---
-
-DROP TABLE IF EXISTS `ctpn`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ctpn` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `dongia` int DEFAULT NULL,
-  `soluong` int DEFAULT NULL,
-  `mapn` bigint DEFAULT NULL,
-  `sanpham` bigint DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ctpn`
---
-
-LOCK TABLES `ctpn` WRITE;
-/*!40000 ALTER TABLE `ctpn` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ctpn` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -102,12 +48,23 @@ DROP TABLE IF EXISTS `dondathang`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dondathang` (
   `maddh` bigint NOT NULL AUTO_INCREMENT,
+  `dkgh` int DEFAULT NULL,
+  `dknh` int DEFAULT NULL,
+  `isfcl` int DEFAULT NULL,
+  `luuy` varchar(255) DEFAULT NULL,
+  `motahh` varchar(255) DEFAULT NULL,
   `ngaythuchien` datetime DEFAULT NULL,
+  `nhomhang` int DEFAULT NULL,
+  `tgkh` varchar(255) DEFAULT NULL,
   `tinhtrang` int DEFAULT NULL,
   `makh` bigint DEFAULT NULL,
   `nvxacnhan` bigint DEFAULT NULL,
-  PRIMARY KEY (`maddh`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `sanpham` bigint DEFAULT NULL,
+  PRIMARY KEY (`maddh`),
+  KEY `FK7mfty2m79o98uk1b6vmht5pn8` (`makh`),
+  KEY `FKqu0hxpglbow8gvmc6rco62crm` (`nvxacnhan`),
+  KEY `FKfyvbgmfw1gdjmtoo7lhrer2hs` (`sanpham`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,6 +73,7 @@ CREATE TABLE `dondathang` (
 
 LOCK TABLES `dondathang` WRITE;
 /*!40000 ALTER TABLE `dondathang` DISABLE KEYS */;
+INSERT INTO `dondathang` VALUES (1,2,2,0,'Luu y','Do choi','2024-03-15 00:00:00',1,'tu 20/3 den 25/3',1,1,2,1);
 /*!40000 ALTER TABLE `dondathang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,8 +89,10 @@ CREATE TABLE `giohang` (
   `soluong` int DEFAULT NULL,
   `makh` bigint DEFAULT NULL,
   `sanpham` bigint DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  KEY `FK3a5g8iyvgpwxy37062hwv5339` (`makh`),
+  KEY `FKh66e48rmycmnjfbsmfo3ir9ce` (`sanpham`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +126,7 @@ CREATE TABLE `khachhang` (
   `trangthai` int DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`makh`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,31 +135,8 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (1,'234','qrfwe@dsfg',1,'gfsd','sdaf','sdfgsdf','2001-10-03 00:00:00','2001-10-03','$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG','3e45435345',1,'khachhang1');
+INSERT INTO `khachhang` VALUES (1,'','thiensudanduong12@gmail.com',1,'Nguyen Tran Duc Thuan','','asdfasdf','2024-03-10 00:00:00','2001-03-10','123456','0921672953',1,'thuannguyen');
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `loaisp`
---
-
-DROP TABLE IF EXISTS `loaisp`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `loaisp` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `tenloai` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `loaisp`
---
-
-LOCK TABLES `loaisp` WRITE;
-/*!40000 ALTER TABLE `loaisp` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loaisp` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -224,8 +161,10 @@ CREATE TABLE `nhanvien` (
   `sdt` varchar(255) DEFAULT NULL,
   `trangthai` int DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`manv`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `chucvuchinh` bigint DEFAULT NULL,
+  PRIMARY KEY (`manv`),
+  KEY `FKl3n530wv53k75nl0mgrh4or14` (`chucvuchinh`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +173,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES (1,'1234567890','55 jjj','werf',1,'thuan','LOGO.WEBM',2000000,'2001-10-03','2001-10-03','$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG','0900909009090',1,'admin'),(2,'1234567890','55 jjj','werf',1,'thuan2','LOGO.WEBM',2000000,'2001-10-03','2001-10-03','$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG','0900909009090',1,'nhanvien1');
+INSERT INTO `nhanvien` VALUES (1,'1234567890','55 jjj','werf',1,'thuan','LOGO.WEBM',2000000,'2001-10-03','2001-10-03','123456','0900909009090',1,'admin',1),(2,'1234567890','55 jjj','werf',1,'thuan2','LOGO.WEBM',2000000,'2001-10-03','2001-10-03','123456','0900909009090',1,'sale1',2),(3,'1234567890','55 jjj','werf',1,'thuan2','LOGO.WEBM',2000000,'2001-10-03','2001-10-03','123456','0900909009090',1,'doc1',3);
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,8 +186,10 @@ DROP TABLE IF EXISTS `nhanvien_chucvu`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `nhanvien_chucvu` (
   `manv` bigint NOT NULL,
-  `id` bigint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` bigint NOT NULL,
+  KEY `FKg6tteauf5w8dqa32dyxusminy` (`id`),
+  KEY `FKa5xmthd9pd8qn9w5l45nyn74h` (`manv`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,34 +198,7 @@ CREATE TABLE `nhanvien_chucvu` (
 
 LOCK TABLES `nhanvien_chucvu` WRITE;
 /*!40000 ALTER TABLE `nhanvien_chucvu` DISABLE KEYS */;
-INSERT INTO `nhanvien_chucvu` VALUES (1,1),(2,2);
 /*!40000 ALTER TABLE `nhanvien_chucvu` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `phieunhap`
---
-
-DROP TABLE IF EXISTS `phieunhap`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `phieunhap` (
-  `mapn` bigint NOT NULL AUTO_INCREMENT,
-  `nhacc` varchar(255) DEFAULT NULL,
-  `ngay` datetime DEFAULT NULL,
-  `tinhtrang` int DEFAULT NULL,
-  `manv` bigint DEFAULT NULL,
-  PRIMARY KEY (`mapn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `phieunhap`
---
-
-LOCK TABLES `phieunhap` WRITE;
-/*!40000 ALTER TABLE `phieunhap` DISABLE KEYS */;
-/*!40000 ALTER TABLE `phieunhap` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -296,16 +210,31 @@ DROP TABLE IF EXISTS `sanpham`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sanpham` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `donvitinh` varchar(255) DEFAULT NULL,
-  `gia` int DEFAULT NULL,
+  `dvvc` varchar(255) DEFAULT NULL,
+  `cuocvc` int DEFAULT NULL,
+  `etd` int DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
-  `mota` longtext,
-  `soluongton` int DEFAULT NULL,
-  `ten` varchar(255) DEFAULT NULL,
-  `trangthai` int DEFAULT NULL,
   `loai` bigint DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `mota` longtext,
+  `noiden` varchar(255) DEFAULT NULL,
+  `noidi` varchar(255) DEFAULT NULL,
+  `notephiden` varchar(255) DEFAULT NULL,
+  `notephidi` varchar(255) DEFAULT NULL,
+  `phidenbl` int DEFAULT NULL,
+  `phidencmb` int DEFAULT NULL,
+  `phidencont` int DEFAULT NULL,
+  `phidenset` int DEFAULT NULL,
+  `phidibl` int DEFAULT NULL,
+  `phidicmb` int DEFAULT NULL,
+  `phidicont` int DEFAULT NULL,
+  `phidiset` int DEFAULT NULL,
+  `ten` varchar(255) DEFAULT NULL,
+  `tgvc` int DEFAULT NULL,
+  `trangthai` int DEFAULT NULL,
+  `nvtao` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKj8y7du2gtp3n0mghldybndi9a` (`nvtao`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -314,6 +243,7 @@ CREATE TABLE `sanpham` (
 
 LOCK TABLES `sanpham` WRITE;
 /*!40000 ALTER TABLE `sanpham` DISABLE KEYS */;
+INSERT INTO `sanpham` VALUES (1,'oocl',10000,8,NULL,1,'','SYD','HCM',NULL,NULL,0,30000,0,20000,0,40000,0,50000,'LCL Ho cChi Minh - Sydney',20,1,1),(2,'KMTC',10000,8,NULL,0,'','BKK','HCM',NULL,NULL,0,30000,0,20000,0,40000,0,50000,'LCL Ho cChi Minh - Bangkok',5,1,1);
 /*!40000 ALTER TABLE `sanpham` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -326,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-23 18:58:13
+-- Dump completed on 2024-03-15 13:38:44

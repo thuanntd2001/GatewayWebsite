@@ -31,7 +31,6 @@ public class ChucVuAPI {
 			e.setId(item.getId());
 			e.setTenChucVu(item.getTenChucVu());
 
-
 			listDTO.add(e);
 		}
 		System.out.print(list.size());

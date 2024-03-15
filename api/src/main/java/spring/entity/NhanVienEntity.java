@@ -13,8 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -73,9 +73,7 @@ public class NhanVienEntity {
 	@Column(name="USERNAME")
 	private String userName;
 	
-	@OneToOne
-	@JoinColumn(name="MANV")
-	private NhanVienEntity usernv;
+
 	
 	@Column(name="PASSWD")
 	private String passwd;
@@ -88,12 +86,36 @@ public class NhanVienEntity {
 	        inverseJoinColumns = @JoinColumn(name = "ID")
 			)
 	private List<ChucVuEntity> chucVus;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "CHUCVUCHINH")
+	private ChucVuEntity chucVuChinh;
+
 
 	@Column(name ="EMAIL")
 	private String email;
 	
 	@Column(name="ICON")
 	private String icon;
+
+	
+	
+	public Collection<SanPhamEntity> getSps() {
+		return sps;
+	}
+
+	public void setSps(Collection<SanPhamEntity> sps) {
+		this.sps = sps;
+	}
+
+	public ChucVuEntity getChucVuChinh() {
+		return chucVuChinh;
+	}
+
+	public void setChucVuChinh(ChucVuEntity chucVuChinh) {
+		this.chucVuChinh = chucVuChinh;
+	}
 
 	public Long getMaNV() {
 		return maNV;
@@ -191,13 +213,6 @@ public class NhanVienEntity {
 		this.userName = userName;
 	}
 
-	public NhanVienEntity getUsernv() {
-		return usernv;
-	}
-
-	public void setUsernv(NhanVienEntity usernv) {
-		this.usernv = usernv;
-	}
 
 	public String getPasswd() {
 		return passwd;

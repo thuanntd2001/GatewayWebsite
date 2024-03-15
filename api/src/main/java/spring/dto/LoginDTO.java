@@ -13,8 +13,17 @@ public class LoginDTO {
 	private String cmnd;
 	private String diaChi;
 	private Date ngayVaoLam;
-	private int trangThai=1;
+	private int trangThai = 1;
 
+	private String userName;
+
+	private String passwd;
+
+	private String email;
+
+	private String icon;
+
+	private Long roleID;
 
 	public Long getMaNV() {
 		return maNV;
@@ -88,20 +97,6 @@ public class LoginDTO {
 		this.ngayVaoLam = ngayVaoLam;
 	}
 
-
-
-	private String userName;
-
-	private String passwd;
-
-	private String email;
-
-	private String icon;
-
-	private Long ID;
-
-	private Long roleID;
-
 	public String getEmail() {
 		return email;
 	}
@@ -135,15 +130,6 @@ public class LoginDTO {
 	}
 
 
-
-	public Long getID() {
-		return ID;
-	}
-
-	public void setID(Long id) {
-		this.ID = id;
-	}
-
 	public Long getRoleID() {
 		return roleID;
 	}
@@ -159,7 +145,5 @@ public class LoginDTO {
 	public void setTrangThai(int trangThai) {
 		this.trangThai = trangThai;
 	}
-
-
 
 }

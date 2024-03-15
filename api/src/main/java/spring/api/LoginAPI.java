@@ -38,7 +38,6 @@ public class LoginAPI {
 			e.setCmnd(user.getCmnd());
 			e.setEmail(user.getEmail());
 			e.setIcon(user.getIcon());
-			e.setID(user.getUsernv().getMaNV());
 			e.setPasswd(user.getPasswd());
 			e.setRoleID(user.getChucVus().get(0).getId());
 			e.setUserName(user.getUserName());

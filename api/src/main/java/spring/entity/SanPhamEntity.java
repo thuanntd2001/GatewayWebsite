@@ -1,12 +1,16 @@
 package spring.entity;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 
@@ -22,7 +26,10 @@ public class SanPhamEntity {
 	@JoinColumn(name = "NVTAO")
 	private NhanVienEntity nvTao;
 	
-	@Column(name = "LOAI")
+	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
+	private Collection<DDHEntity> ddhs;
+	
+	@Column(name = "LOAI") //mod 2 = 0 di thang, mod 2 = 1 chuyen tai, <2 lcl, >2 FCL
 	private Long loai;
 
 	@Column(name = "TEN")
@@ -83,6 +90,8 @@ public class SanPhamEntity {
 	
 	@Column(name = "ETD")
 	private Integer etd;
+	
+	
 
 	public Long getId() {
 		return id;

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import spring.dto.NhanVienDTO;
 import spring.entity.NhanVienEntity;
+import spring.repository.ChucVuRepository;
 import spring.repository.NhanVienRepository;
 
 @RestController
 public class NhanVienAPI {
 	@Autowired
 	NhanVienRepository repo;
+	@Autowired
+	ChucVuRepository cvrepo;
 
 	@GetMapping("/nhanvien")
 	public List<NhanVienDTO> getNhanVien() {
@@ -36,8 +39,8 @@ public class NhanVienAPI {
 			e.setNgayVaoLam(item.getNgayVaoLam());
 			e.setSdt(item.getSdt());
 			e.setCmnd(item.getCmnd());
-			
-			
+			e.setChucVuChinh(item.getChucVuChinh().getId());
+
 			listDTO.add(e);
 		}
 		System.out.print(list.size());
@@ -59,6 +62,10 @@ public class NhanVienAPI {
 			save.setLuong(model.getLuong());
 			save.setNgayVaoLam(model.getNgayVaoLam());
 			save.setSdt(model.getSdt());
+			
+			if (model.getChucVuChinh()!=null)
+				save.setChucVuChinh(cvrepo.getOne(model.getChucVuChinh()));
+
 
 			check = repo.save(save);
 		} catch (Exception e) {
@@ -99,6 +106,8 @@ public class NhanVienAPI {
 				save.setNgayVaoLam(model.getNgayVaoLam());
 				save.setSdt(model.getSdt());
 				save.setTrangThai(model.getTrangThai());
+				if (model.getChucVuChinh()!=null)
+					save.setChucVuChinh(cvrepo.getOne(model.getChucVuChinh()));
 				check = repo.save(save);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -113,7 +122,7 @@ public class NhanVienAPI {
 
 	}
 
-	@PatchMapping(value = "/nhanvien")
+	@DeleteMapping(value = "/nhanvien")
 	public String deleteNV(@RequestBody NhanVienDTO ids) {
 		Optional<NhanVienEntity> nvoption = repo.findById(ids.getMaNV());
 		if (nvoption.isEmpty()) {
@@ -141,7 +150,37 @@ public class NhanVienAPI {
 			}
 			return "00";
 		}
-
 	}
+
+//	@PatchMapping(value = "/nhanvien")
+//	public String themCV(@RequestBody ChucVuDTO ids) {
+//		Optional<ChucVuEntity> option = cvrepo.findById(ids.getId());
+//		if (option.isEmpty()) {
+//
+//			System.out.print("ko tồn tại cv");
+//			return "404";
+//		}
+//
+//		else {
+//			System.out.print("tồn tại cv");
+//			ChucVuEntity save = option.get();
+//			ChucVuEntity check = null;
+//			try {
+//
+//				save.setTrangThai(0);
+//				check = repo.save(save);
+//
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				return "01";
+//			}
+//
+//			if (check == null) {
+//				return "02";
+//			}
+//			return "00";
+//
+//		}
+//	}
 
 }

@@ -25,6 +25,9 @@ public class NhanVienDTO {
 	private String email;
 
 	private String icon;
+	
+	private Long chucVuChinh;
+
 
 	public Long getMaNV() {
 		return maNV;
@@ -138,15 +141,14 @@ public class NhanVienDTO {
 		this.icon = icon;
 	}
 
-	public Long getRoleID() {
-		return roleID;
+	public Long getChucVuChinh() {
+		return chucVuChinh;
 	}
 
-	public void setRoleID(Long roleID) {
-		this.roleID = roleID;
+	public void setChucVuChinh(Long chucVuChinh) {
+		this.chucVuChinh = chucVuChinh;
 	}
 
-	private Long roleID;
 
 	
 	
