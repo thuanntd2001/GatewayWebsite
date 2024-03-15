@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import spring.config.TokenProvider;
-import spring.dto.AuthToken;
+import spring.bean.AuthToken;
 import spring.dto.NhanVienDTO;
 
 @RestController

@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import spring.dto.MyUser;
+import spring.bean.MyUser;
 import spring.entity.ChucVuEntity;
 import spring.entity.KhachHangEntity;
 import spring.entity.NhanVienEntity;

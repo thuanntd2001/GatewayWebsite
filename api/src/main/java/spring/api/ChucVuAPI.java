@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import spring.dto.ChucVuDTO;
 import spring.entity.ChucVuEntity;
-import spring.dto.ObjLong;
+import spring.bean.ObjLong;
 import spring.repository.ChucVuRepository;
 
 @RestController

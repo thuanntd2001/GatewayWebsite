@@ -1,4 +1,4 @@
-package spring.dto;
+package spring.bean;
 
 public class AuthToken {
 	

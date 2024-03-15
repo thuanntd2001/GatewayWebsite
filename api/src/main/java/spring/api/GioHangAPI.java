@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import spring.dto.GioHangDTO;
 import spring.entity.GioHangEntity;
-import spring.dto.ObjLong;
+import spring.bean.ObjLong;
 import spring.repository.GioHangRepository;
 import spring.repository.KhachHangRepository;
 import spring.repository.SanPhamRepository;

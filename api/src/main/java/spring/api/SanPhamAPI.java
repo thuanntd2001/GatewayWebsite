@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import spring.dto.SanPhamDTO;
 import spring.entity.SanPhamEntity;
-import spring.dto.ObjLong;
+import spring.bean.ObjLong;
 import spring.repository.NhanVienRepository;
 import spring.repository.SanPhamRepository;
 

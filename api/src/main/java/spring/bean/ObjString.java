@@ -1,4 +1,4 @@
-package spring.dto;
+package spring.bean;
 
 public class ObjString {
 	private String objString;

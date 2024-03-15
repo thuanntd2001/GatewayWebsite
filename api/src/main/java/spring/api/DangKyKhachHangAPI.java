@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import spring.entity.KhachHangEntity;
-import spring.dto.ObjString;
+import spring.bean.ObjString;
 import spring.repository.ChucVuRepository;
 import spring.repository.KhachHangRepository;
 

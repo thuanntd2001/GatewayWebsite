@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import spring.dto.DDHDTO;
 import spring.entity.DDHEntity;
-import spring.dto.ObjLong;
+import spring.bean.ObjLong;
 import spring.repository.DDHRepository;
 import spring.repository.KhachHangRepository;
 import spring.repository.NhanVienRepository;

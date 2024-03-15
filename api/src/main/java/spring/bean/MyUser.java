@@ -1,4 +1,4 @@
-package spring.dto;
+package spring.bean;
 
 import java.util.Collection;
 
