@@ -21,7 +21,7 @@ public class LoginKHAPI {
 	public LoginKHDTO checkUserNameAndPass(@RequestBody KhachHangDTO model) {
 
 	
-		KhachHangEntity user = khrepo.findByUserNameAndPasswdAndTrangThai(model.getUserName(),model.getPasswd(),1);
+		KhachHangEntity user = khrepo.findByEmailAndPasswdAndTrangThai(model.getEmail(),model.getPasswd(),1);
 		if (user==null) {
 		return null;
 		}
@@ -37,7 +37,6 @@ public class LoginKHAPI {
 			e.setEmail(user.getEmail());
 			e.setIcon(user.getIcon());
 			e.setPasswd(user.getPasswd());
-			e.setUserName(user.getUserName());
 			e.setTrangThai(user.getTrangThai());
 			return e;
 		}

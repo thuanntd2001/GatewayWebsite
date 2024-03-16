@@ -1,0 +1,10 @@
+POST http://localhost:8081/authentication
+{
+	"userName" : "f@gmail.com",
+	"passwd" : "123456"
+}
+
+trang thai NV = isEnable
+trang thai KH = 1 da Kich hoat emai; 0 nguoc lai
+nhan vien login dung thuoc tinh username
+kh login dung thuoc tinh email

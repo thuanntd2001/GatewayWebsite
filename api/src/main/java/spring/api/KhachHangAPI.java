@@ -31,9 +31,11 @@ public class KhachHangAPI {
 			e.setMaKH(item.getMaKH());
 			e.setDiaChi(item.getDiaChi());
 			e.setGioiTinh(item.getGioiTinh());
-			e.setHoTen(item.getHoTen());
 			e.setNgaySinh(item.getNgaySinh());
 			e.setSdt(item.getSdt());
+			e.setEmail(item.getEmail());
+			e.setHoTen(item.getHoTen());
+
 
 			listDTO.add(e);
 		}
@@ -54,9 +56,7 @@ public class KhachHangAPI {
 			save.setNgaySinh(model.getNgaySinh());
 			save.setSdt(model.getSdt());
 			save.setEmail(model.getEmail());
-			save.setMaXacThuc(model.getMaXacThuc());
 			save.setPasswd(model.getPasswd());
-			save.setUserName(model.getUserName());
 			save.setIcon("logo.webp");
 			save.setNgayDangKy(model.getNgayDangKy());
 

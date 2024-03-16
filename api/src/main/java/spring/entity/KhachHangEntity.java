@@ -26,6 +26,15 @@ public class KhachHangEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "MAKH")
 	private Long maKH;
+	
+	@Column(name = "EMAIL", unique = true, columnDefinition = "VARCHAR(100)")
+	private String email;
+	
+	@Column(name = "PASSWD")
+	private String passwd;
+	
+	@Column(name = "ICON")
+	private String icon;
 
 	@Column(name = "HOTEN")
 	private String hoTen;
@@ -44,34 +53,33 @@ public class KhachHangEntity {
 	@Column(name = "DIACHI")
 	private String diaChi;
 
-	@Column(name = "TRANGTHAI")
-	private int trangThai;
+	@Column(name = "ISLOCKED") 
+	private boolean isLocked;
+	
+	@Column(name = "ISENABLE") 
+	private boolean isEnable;
 
 	@OneToMany(mappedBy = "khThucHien", fetch = FetchType.LAZY)
 	private Collection<DDHEntity> ddhs;
 
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private Collection<GioHangEntity> gioHangs;
-
-	@Column(name = "USERNAME")
-	private String userName;
-
-	@Column(name = "PASSWD")
-	private String passwd;
-
-	@Column(name = "MAXACTHUC")
-	private String maXacThuc;
-
-	@Column(name = "EMAIL")
-	private String email;
-
-	@Column(name = "ICON")
-	private String icon;
-
+	
 	@Column(name = "NGAYDANGKY")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
 	private Date ngayDangKy;
+	
+	@Column(name = "TRANGTHAI", columnDefinition = "INT DEFAULT 1") 
+	private int trangThai;
+
+	public int getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(int trangThai) {
+		this.trangThai = trangThai;
+	}
 
 	public Long getMaKH() {
 		return maKH;
@@ -121,13 +129,7 @@ public class KhachHangEntity {
 		this.diaChi = diaChi;
 	}
 
-	public int getTrangThai() {
-		return trangThai;
-	}
 
-	public void setTrangThai(int trangThai) {
-		this.trangThai = trangThai;
-	}
 
 	public Collection<DDHEntity> getDdhs() {
 		return ddhs;
@@ -145,12 +147,25 @@ public class KhachHangEntity {
 		this.gioHangs = gioHangs;
 	}
 
-	public String getUserName() {
-		return userName;
+
+	public boolean isLocked() {
+		return isLocked;
+	}
+	
+	public boolean isNonLocked() {
+		return !isLocked;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setLocked(boolean isLocked) {
+		this.isLocked = isLocked;
+	}
+
+	public boolean isEnable() {
+		return isEnable;
+	}
+
+	public void setEnable(boolean isEnable) {
+		this.isEnable = isEnable;
 	}
 
 	public String getPasswd() {
@@ -161,13 +176,7 @@ public class KhachHangEntity {
 		this.passwd = passwd;
 	}
 
-	public String getMaXacThuc() {
-		return maXacThuc;
-	}
 
-	public void setMaXacThuc(String maXacThuc) {
-		this.maXacThuc = maXacThuc;
-	}
 
 	public String getEmail() {
 		return email;

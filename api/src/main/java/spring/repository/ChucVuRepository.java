@@ -7,7 +7,6 @@ import spring.entity.ChucVuEntity;
 
 
 
-
 public interface ChucVuRepository extends JpaRepository<ChucVuEntity, Long>{
 
 }

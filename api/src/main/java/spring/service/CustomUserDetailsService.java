@@ -30,14 +30,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		NhanVienEntity NhanVien = nvRepository.findOneByUserNameAndTrangThai(username, 1);
-		KhachHangEntity KhachHang = khRepository.findOneByUserNameAndTrangThai(username, 1);
+		
+		KhachHangEntity KhachHang = khRepository.findOneByEmailAndTrangThai(username, 1);
 
 		if (NhanVien != null) {
 			List<GrantedAuthority> authorities = new ArrayList<>();
 			for (ChucVuEntity item : NhanVien.getChucVus()) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_" + item.getTenChucVu()));
 			}
-			MyUser myUserDetail = new MyUser(NhanVien.getUserName(), NhanVien.getPasswd(), true, true, true,
+			MyUser myUserDetail = new MyUser(NhanVien.getUserName(), NhanVien.getPasswd(), chuyenDoiTrangThaiEnable(NhanVien.getTrangThai()), true, true,
 					true, authorities);
 			BeanUtils.copyProperties(NhanVien, myUserDetail);
 			return myUserDetail;
@@ -48,8 +49,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 			
 				authorities.add(new SimpleGrantedAuthority("ROLE_" + "khachhang"));
 			
-			MyUser myUserDetail = new MyUser(KhachHang.getUserName(), KhachHang.getPasswd(), true, true, true,
-					true, authorities);
+			MyUser myUserDetail = new MyUser(KhachHang.getEmail(), KhachHang.getPasswd(), KhachHang.isEnable(), true, true,
+					!KhachHang.isLocked(), authorities);
 			BeanUtils.copyProperties(KhachHang, myUserDetail);
 			return myUserDetail;
 
@@ -58,5 +59,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 		else {
 			throw new UsernameNotFoundException("User not found");
 		}
+	}
+	
+	public boolean chuyenDoiTrangThaiLock(int trangThai) {
+		if (trangThai==-1) return false;
+		else return true;
+	}
+	public boolean chuyenDoiTrangThaiEnable(int trangThai) {
+		if (trangThai==0) return false;
+		else return true;
 	}
 }

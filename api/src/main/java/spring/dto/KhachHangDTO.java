@@ -14,17 +14,12 @@ public class KhachHangDTO {
 	private String diaChi;
 	private int trangThai;
 	
-	private String userName;
-
 	private String passwd;
-
-	private Integer status;
 
 	private String email;
 
 	private String icon;
 
-	private String maXacThuc;
 	private Date ngayDangKy;
 	public Long getMaKH() {
 		return maKH;
@@ -44,7 +39,7 @@ public class KhachHangDTO {
 	public void setNgaySinh(Date ngaySinh) {
 		this.ngaySinh = ngaySinh;
 	}
-	public int isGioiTinh() {
+	public int getGioiTinh() {
 		return gioiTinh;
 	}
 	public void setGioiTinh(int i) {
@@ -68,24 +63,14 @@ public class KhachHangDTO {
 	public void setTrangThai(int trangThai) {
 		this.trangThai = trangThai;
 	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+
 	public String getPasswd() {
 		return passwd;
 	}
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -98,12 +83,7 @@ public class KhachHangDTO {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-	public String getMaXacThuc() {
-		return maXacThuc;
-	}
-	public void setMaXacThuc(String maXacThuc) {
-		this.maXacThuc = maXacThuc;
-	}
+
 	public Date getNgayDangKy() {
 		return ngayDangKy;
 	}
