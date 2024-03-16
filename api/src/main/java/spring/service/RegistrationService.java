@@ -37,8 +37,9 @@ public class RegistrationService {
 
 		String token = this.signUpUser(request);
 
-		String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+		String link = "http://localhost:8081/api/v1/registration/confirm?token=" + token;
 		emailSender.send(request.getEmail(), buildEmail(request.getHoTen(), link));
+		System.out.println(request.getEmail());
 
 		return token;
 	}
@@ -126,6 +127,9 @@ public class RegistrationService {
 		save.setNgaySinh(khachHang.getNgaySinh());
 		save.setIcon("logo.webp");
 		save.setNgayDangKy(khachHang.getNgayDangKy());
+		save.setEnable(true);
+		save.setLocked(false);
+
 
 		khrepo.save(save);
 

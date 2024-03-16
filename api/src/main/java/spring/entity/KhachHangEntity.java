@@ -53,10 +53,10 @@ public class KhachHangEntity {
 	@Column(name = "DIACHI")
 	private String diaChi;
 
-	@Column(name = "ISLOCKED") 
+	@Column(name = "ISLOCKED",  columnDefinition = "BOOLEAN default FALSE") 
 	private boolean isLocked;
 	
-	@Column(name = "ISENABLE") 
+	@Column(name = "ISENABLE", columnDefinition = "BOOLEAN default TRUE") 
 	private boolean isEnable;
 
 	@OneToMany(mappedBy = "khThucHien", fetch = FetchType.LAZY)

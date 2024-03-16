@@ -20,15 +20,22 @@ public interface KhachHangRepository extends JpaRepository<KhachHangEntity, Long
 	List<KhachHangEntity> findAllActive();
 
 	KhachHangEntity findByEmailAndPasswdAndTrangThai(String userName, String passwd,int status);
+	
 
 	KhachHangEntity findOneByEmailAndTrangThai(String username, int trangThai);
+	
+	
+    @Query("FROM KhachHangEntity a " +
+            "WHERE  a.email = ?1 AND a.trangThai >= ?2 ")
+	KhachHangEntity findEmailAndTrangThaiv2(String username, int trangThai);
+
 
 	KhachHangEntity findOneByEmail(String email) ;
 	
     @Transactional
     @Modifying
     @Query("UPDATE KhachHangEntity a " +
-            "SET a.TrangThai = 2 WHERE a.email = ?1")
+            "SET a.trangThai = 2 WHERE a.email = ?1")
     int enableAppUser(String email);
 
 

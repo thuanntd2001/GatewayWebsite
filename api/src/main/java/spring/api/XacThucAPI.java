@@ -10,9 +10,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import spring.config.TokenProvider;
+
 import spring.bean.AuthToken;
-import spring.dto.NhanVienDTO;
+import spring.config.TokenProvider;
+import spring.dto.UserDTO;
 
 @RestController
 public class XacThucAPI {
@@ -24,7 +25,7 @@ public class XacThucAPI {
     private TokenProvider jwtTokenUtil;
 
     @PostMapping("/authentication")
-    public ResponseEntity<?> register(@RequestBody NhanVienDTO userDTO) throws AuthenticationException {
+    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) throws AuthenticationException {
 
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

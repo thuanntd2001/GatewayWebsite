@@ -31,7 +31,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		NhanVienEntity NhanVien = nvRepository.findOneByUserNameAndTrangThai(username, 1);
 		
-		KhachHangEntity KhachHang = khRepository.findOneByEmailAndTrangThai(username, 1);
+		KhachHangEntity KhachHang = khRepository.findOneByEmail(username);
+		System.out.println("username");
+
+		System.out.println(username);
 
 		if (NhanVien != null) {
 			List<GrantedAuthority> authorities = new ArrayList<>();
