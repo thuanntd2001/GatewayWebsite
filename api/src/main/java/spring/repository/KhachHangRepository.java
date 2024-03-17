@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import spring.entity.KhachHangEntity;
@@ -12,7 +13,8 @@ import spring.entity.KhachHangEntity;
 
 
 
-
+@Repository
+@Transactional(readOnly = true)
 public interface KhachHangRepository extends JpaRepository<KhachHangEntity, Long>{
 	@Query(
 			  value = "SELECT * FROM khachhang item WHERE TRANGTHAI = 1", 
