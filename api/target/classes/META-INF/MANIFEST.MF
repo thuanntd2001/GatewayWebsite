@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: thuannguyen
+Build-Jdk: 17.0.3
+Implementation-Title: API
+Implementation-Version: 1.0
+Implementation-Vendor-Id: com.example
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/API
+Created-By: Maven Integration for Eclipse
+
