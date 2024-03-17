@@ -20,7 +20,12 @@ public class KhachHangDTO {
 
 	private String icon;
 
+
 	private Date ngayDangKy;
+	
+	
+	
+
 	public Long getMaKH() {
 		return maKH;
 	}

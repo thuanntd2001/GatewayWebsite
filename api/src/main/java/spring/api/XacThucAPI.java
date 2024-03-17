@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import spring.bean.AuthToken;
 import spring.config.TokenProvider;
 import spring.dto.UserDTO;
+import spring.entity.NhanVienEntity;
+import spring.repository.NhanVienRepository;
 
 @RestController
 public class XacThucAPI {
@@ -23,6 +25,11 @@ public class XacThucAPI {
 
     @Autowired
     private TokenProvider jwtTokenUtil;
+    
+
+    
+    @Autowired
+    private NhanVienRepository nvrepo;
 
     @PostMapping("/authentication")
     public ResponseEntity<?> register(@RequestBody UserDTO userDTO) throws AuthenticationException {
@@ -34,7 +41,19 @@ public class XacThucAPI {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        
+        int mainRole = 4;
+        
+        NhanVienEntity nv= nvrepo.findOneByUserName(userDTO.getUserName());
+        
+        if (nv !=null) {
+        	mainRole =  nv.getChucVuChinh().getId().intValue();
+        }
+        
+ 
         final String token = jwtTokenUtil.generateToken(authentication);
-        return ResponseEntity.ok(new AuthToken(token));
+        
+        
+        return ResponseEntity.ok(new AuthToken(token,mainRole));
     }
 }

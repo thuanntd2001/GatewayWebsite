@@ -21,5 +21,7 @@ public interface NhanVienRepository extends JpaRepository<NhanVienEntity, Long>{
 	List<NhanVienEntity> findAllActive();
 	NhanVienEntity findByUserNameAndPasswdAndTrangThai(String userName, String passwd,int status);
 	NhanVienEntity findOneByUserNameAndTrangThai(String username, int trangThai);
+	NhanVienEntity findOneByUserName(String username);
+
 
 }
