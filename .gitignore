@@ -1,3 +1,4 @@
 /.metadata/
 .gitignore
 application.yml
+/target
