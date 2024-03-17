@@ -30,14 +30,23 @@ CREATE TABLE `chucvu` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `chucvu`
+-- Table structure for table `confirmtoken`
 --
 
-LOCK TABLES `chucvu` WRITE;
-/*!40000 ALTER TABLE `chucvu` DISABLE KEYS */;
-INSERT INTO `chucvu` VALUES (1,'ADMIN'),(2,'SALES'),(3,'DOCS');
-/*!40000 ALTER TABLE `chucvu` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `confirmtoken`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `confirmtoken` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `confirmed_at` datetime DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `expires_at` datetime NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `makh` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKm7fkwla2lgbrxdi1l1iwi58y2` (`makh`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `dondathang`
@@ -68,16 +77,6 @@ CREATE TABLE `dondathang` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `dondathang`
---
-
-LOCK TABLES `dondathang` WRITE;
-/*!40000 ALTER TABLE `dondathang` DISABLE KEYS */;
-INSERT INTO `dondathang` VALUES (1,2,2,0,'Luu y','Do choi','2024-03-15 00:00:00',1,'tu 20/3 den 25/3',1,1,2,1);
-/*!40000 ALTER TABLE `dondathang` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `giohang`
 --
 
@@ -96,15 +95,6 @@ CREATE TABLE `giohang` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `giohang`
---
-
-LOCK TABLES `giohang` WRITE;
-/*!40000 ALTER TABLE `giohang` DISABLE KEYS */;
-/*!40000 ALTER TABLE `giohang` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `khachhang`
 --
 
@@ -114,30 +104,21 @@ DROP TABLE IF EXISTS `khachhang`;
 CREATE TABLE `khachhang` (
   `makh` bigint NOT NULL AUTO_INCREMENT,
   `diachi` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
   `gioitinh` int DEFAULT NULL,
   `hoten` varchar(255) DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
-  `maxacthuc` varchar(255) DEFAULT NULL,
+  `isenable` tinyint(1) DEFAULT '1',
+  `islocked` tinyint(1) DEFAULT '0',
   `ngaydangky` datetime DEFAULT NULL,
   `ngaysinh` date DEFAULT NULL,
   `passwd` varchar(255) DEFAULT NULL,
   `sdt` varchar(255) DEFAULT NULL,
-  `trangthai` int DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`makh`)
+  `trangthai` int DEFAULT '1',
+  PRIMARY KEY (`makh`),
+  UNIQUE KEY `UK_l6ax6nmfahy9xv8c1esqjlyyb` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `khachhang`
---
-
-LOCK TABLES `khachhang` WRITE;
-/*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (1,'','thiensudanduong12@gmail.com',1,'Nguyen Tran Duc Thuan','','asdfasdf','2024-03-10 00:00:00','2001-03-10','123456','0921672953',1,'thuannguyen');
-/*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `nhanvien`
@@ -168,16 +149,6 @@ CREATE TABLE `nhanvien` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `nhanvien`
---
-
-LOCK TABLES `nhanvien` WRITE;
-/*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES (1,'1234567890','55 jjj','werf',1,'thuan','LOGO.WEBM',2000000,'2001-10-03','2001-10-03','123456','0900909009090',1,'admin',1),(2,'1234567890','55 jjj','werf',1,'thuan2','LOGO.WEBM',2000000,'2001-10-03','2001-10-03','123456','0900909009090',1,'sale1',2),(3,'1234567890','55 jjj','werf',1,'thuan2','LOGO.WEBM',2000000,'2001-10-03','2001-10-03','123456','0900909009090',1,'doc1',3);
-/*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `nhanvien_chucvu`
 --
 
@@ -191,15 +162,6 @@ CREATE TABLE `nhanvien_chucvu` (
   KEY `FKa5xmthd9pd8qn9w5l45nyn74h` (`manv`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `nhanvien_chucvu`
---
-
-LOCK TABLES `nhanvien_chucvu` WRITE;
-/*!40000 ALTER TABLE `nhanvien_chucvu` DISABLE KEYS */;
-/*!40000 ALTER TABLE `nhanvien_chucvu` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `sanpham`
@@ -236,16 +198,6 @@ CREATE TABLE `sanpham` (
   KEY `FKj8y7du2gtp3n0mghldybndi9a` (`nvtao`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sanpham`
---
-
-LOCK TABLES `sanpham` WRITE;
-/*!40000 ALTER TABLE `sanpham` DISABLE KEYS */;
-INSERT INTO `sanpham` VALUES (1,'oocl',10000,8,NULL,1,'','SYD','HCM',NULL,NULL,0,30000,0,20000,0,40000,0,50000,'LCL Ho cChi Minh - Sydney',20,1,1),(2,'KMTC',10000,8,NULL,0,'','BKK','HCM',NULL,NULL,0,30000,0,20000,0,40000,0,50000,'LCL Ho cChi Minh - Bangkok',5,1,1);
-/*!40000 ALTER TABLE `sanpham` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -256,4 +208,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-15 13:38:44
+-- Dump completed on 2024-03-17 13:17:41
