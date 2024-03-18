@@ -2,10 +2,26 @@ package spring.dto;
 
 import java.util.Date;
 
-import lombok.Data;
+import lombok.ToString;
+import spring.entity.KhachHangEntity;
 
-@Data
+@ToString
 public class KhachHangDTO {
+	public KhachHangDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public KhachHangDTO(KhachHangEntity item) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.setMaKH(item.getMaKH());
+		this.setDiaChi(item.getDiaChi());
+		this.setGioiTinh(item.getGioiTinh());
+		this.setNgaySinh(item.getNgaySinh());
+		this.setSdt(item.getSdt());
+		this.setEmail(item.getEmail());
+		this.setHoTen(item.getHoTen());
+	}
 	private Long maKH;
 	private String hoTen;
 	private Date ngaySinh;

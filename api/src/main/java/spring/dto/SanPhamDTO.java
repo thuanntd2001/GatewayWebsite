@@ -1,7 +1,19 @@
 package spring.dto;
 
+import lombok.ToString;
+
+@ToString
 public class SanPhamDTO {
 	
+	
+	
+
+	public SanPhamDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+
 	private Long id;
 
 	private Long nvTao;

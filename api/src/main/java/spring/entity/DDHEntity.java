@@ -63,6 +63,16 @@ public class DDHEntity {
 	
 	@Column(name = "LUUY")
 	private String luuY;
+	
+	
+
+	public SanPhamEntity getSanPham() {
+		return sanPham;
+	}
+
+	public void setSanPham(SanPhamEntity sanPham) {
+		this.sanPham = sanPham;
+	}
 
 	public Long getId() {
 		return id;

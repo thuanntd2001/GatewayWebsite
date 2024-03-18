@@ -3,9 +3,31 @@ package spring.dto;
 import java.util.Date;
 
 import lombok.Data;
+import spring.entity.NhanVienEntity;
 
 @Data
 public class NhanVienDTO {
+	
+	
+	public NhanVienDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public NhanVienDTO(NhanVienEntity item) {
+		this.setMaNV(item.getMaNV());
+		this.setDiaChi(item.getDiaChi());
+		this.setGioiTinh(item.getGioiTinh());
+		this.setHoTen(item.getHoTen());
+		this.setLuong(item.getLuong());
+		this.setNgaySinh(item.getNgaySinh());
+		this.setNgayVaoLam(item.getNgayVaoLam());
+		this.setSdt(item.getSdt());
+		this.setCmnd(item.getCmnd());
+		this.setChucVuChinh(item.getChucVuChinh().getId());
+
+	}
+
 	private Long maNV;
 	private String hoTen;
 	private Date ngaySinh;

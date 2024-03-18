@@ -25,7 +25,7 @@ public class EmailService implements EmailSender{
 
     @Override
     @Async
-    public void send(String to, String email) {
+    public void sendRegiter(String to, String email) {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper =
@@ -40,4 +40,43 @@ public class EmailService implements EmailSender{
             throw new IllegalStateException("failed to send email");
         }
     }
+    
+    
+    @Override
+    @Async
+    public void sendNM(String to, String email, String sj) {
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper =
+                    new MimeMessageHelper(mimeMessage, "utf-8");
+            helper.setText(email, true);
+            helper.setTo(to);
+            helper.setSubject(sj);
+            helper.setFrom("hello@gateway.com");
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            LOGGER.error("failed to send email", e);
+            throw new IllegalStateException("failed to send email");
+        }
+    }
+    
+    @Async
+    @Override
+    public void sendWCC(String to, String email, String sj, String[] cc) {
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper =
+                    new MimeMessageHelper(mimeMessage, "utf-8");
+            helper.setText(email, true);
+            helper.setTo(to);
+            helper.setSubject(sj);
+            helper.setCc(cc);
+            helper.setFrom("hello@gateway.com");
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            LOGGER.error("failed to send email", e);
+            throw new IllegalStateException("failed to send email");
+        }
+    }
+    
 }

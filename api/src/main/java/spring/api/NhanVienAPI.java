@@ -24,6 +24,7 @@ public class NhanVienAPI {
 	@Autowired
 	ChucVuRepository cvrepo;
 
+
 	@GetMapping("/nhanvien")
 	public List<NhanVienDTO> getNhanVien() {
 		List<NhanVienEntity> list = repo.findAllActive();

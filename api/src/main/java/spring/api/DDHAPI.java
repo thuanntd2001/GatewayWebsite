@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import spring.dto.DDHDTO;
+import spring.dto.KhachHangDTO;
+import spring.dto.NhanVienDTO;
 import spring.entity.DDHEntity;
 import spring.bean.ObjLong;
 import spring.repository.DDHRepository;
 import spring.repository.KhachHangRepository;
 import spring.repository.NhanVienRepository;
+import spring.repository.SanPhamRepository;
+import spring.service.BookingEmailService;
 
 @RestController
 public class DDHAPI {
@@ -27,6 +31,11 @@ public class DDHAPI {
 	NhanVienRepository nvRepo;
 	@Autowired
 	KhachHangRepository khRepo;
+	@Autowired
+	SanPhamRepository spRepo;
+	
+	@Autowired
+	BookingEmailService bkgEmailService;
 
 	@GetMapping("/ddh")
 	public List<DDHDTO> getDDH() {
@@ -49,6 +58,9 @@ public class DDHAPI {
 			save.setMoTaHH(model.getMoTaHH());
 			save.setNhomHang(model.getNhomHang());
 			save.setTgkh(model.getTgkh());
+			save.setSanPham(model.getSanPham().getTen());
+			save.setSanPhamId(model.getSanPham().getId());
+			
 
 			listDTO.add(save);
 		}
@@ -66,6 +78,8 @@ public class DDHAPI {
 				save.setKhThucHien(khRepo.findById(model.getKhThucHien()).get());
 			if (model.getNvThucHien() != null) 
 				save.setNvThucHien(nvRepo.findById(model.getNvThucHien()).get());
+			if (model.getSanPhamId() != null) 
+				save.setSanPham(spRepo.findById(model.getSanPhamId()).get());
 			save.setNgayThucHien(model.getNgayThucHien());
 			save.setTinhTrang(model.getTinhTrang());
 			
@@ -77,6 +91,7 @@ public class DDHAPI {
 			save.setNhomHang(model.getNhomHang());
 			save.setTgkh(model.getTgkh());
 			
+			
 			check = repo.save(save);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,6 +102,11 @@ public class DDHAPI {
 
 			return "02";
 		} else {
+			
+			KhachHangDTO kh = new KhachHangDTO(save.getKhThucHien());
+			NhanVienDTO nv = new NhanVienDTO(save.getNvThucHien());
+			bkgEmailService.booking(kh, model, nv);
+			
 			String flag = "00";
 			return flag;
 		}
