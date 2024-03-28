@@ -4,12 +4,13 @@
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/service/RegistrationService.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/api/XacThucAPI.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/dto/DDHDTO.java
+/home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/service/BookingEmailService.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/dto/LoginDTO.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/dto/GioHangDTO.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/dto/ChucVuDTO.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/repository/ChucVuRepository.java
+/home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/config/CorsConfig.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/api/DDHAPI.java
-/home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/dto/CTPNDTO.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/api/NhanVienAPI.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/dto/UserDTO.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/service/EmailService.java
@@ -20,7 +21,6 @@
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/entity/SanPhamEntity.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/entity/GioHangEntity.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/dto/ThongKeDTO.java
-/home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/dto/CTDDHDTO.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/config/RestClient.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/api/KhachHangAPI.java
 /home/thuannguyen/Desktop/GatewayWebsite/api/src/main/java/spring/entity/ConfirmationTokenEntity.java
