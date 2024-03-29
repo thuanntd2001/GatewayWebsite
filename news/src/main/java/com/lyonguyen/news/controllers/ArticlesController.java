@@ -40,6 +40,10 @@ public class ArticlesController {
         article.setId(id);
 
         articlesService.update(article);
+        
+        System.out.println("URL anh");
+
+        System.out.println(article.getImage());
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("article").path("/{id}")
                 .buildAndExpand(id).toUri();

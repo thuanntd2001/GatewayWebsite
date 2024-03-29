@@ -50,7 +50,16 @@
             <h3 th:text="${title}" class="card-title"></h3>
             <h6 th:text="${subject} + ' - ' + ${#calendars.format(time, 'dd/MM/YY')}" class="card-subtitle text-muted mb-2"></h6>
         </div>
-        <img th:src="${image}" th:alt="${title}" height="400px">
+        
+        
+        
+        <img th:unless="${image != null && image.startsWith('http')}" th:src="@{'/images/' + ${image}}" th:alt="${title}" height="400px">
+        <img th:if="${image != null && image.startsWith('http')}" th:src="${image}" th:alt="${title}" height="400px">
+        
+        
+        
+        
+        
         <div class="card-body">
             <h5 th:text="${brief}" class="card-title"></h5>
             <div th:utext="${content}"></div>

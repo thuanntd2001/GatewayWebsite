@@ -67,7 +67,9 @@
                 </ol>
                 <div class="carousel-inner">
                     <div th:each="news, iter : ${latestNews}" th:classappend="${iter.index == 0 ? 'active' : _}" class="carousel-item">
-                        <img class="d-block w-100" th:src="${news.image}" th:alt="${news.title}" height="500px">
+                        <img th:unless="${news.image.startsWith('http')}" class="d-block w-100" th:src="@{'/images/' + ${news.image}}" th:alt="${news.title}" height="500px">
+                        <img th:if="${news.image.startsWith('http')}" class="d-block w-100" th:src="${news.image}" th:alt="${news.title}" height="500px">
+                        
                         <div class="carousel-caption d-none d-md-block px-5 web-slide-caption">
                             <a th:href="@{'/article/' + ${news.id}}"><h5 th:text="${news.title}" class="text-white"></h5></a>
                             <p th:text="${news.brief}"></p>

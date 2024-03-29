@@ -21,8 +21,9 @@ $(function() {
 					$('.web-title-image-control-inner > label').text('Choose file');
 				},
 				success: function(data) {
-					$('.web-title-image').attr('src', data.url);
+					$('.web-title-image').attr('src', data.fileName);
 					$('.web-title-image').attr('hidden', false);
+					alert("Upload success");
 				},
 				error: function(xhr, textStatus, errorThrown) {
 					$('.web-title-image-control-inner > label').text(textStatus || errorThrown);

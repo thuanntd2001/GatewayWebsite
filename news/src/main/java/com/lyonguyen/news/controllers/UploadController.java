@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.lyonguyen.news.models.CKEditorUploadResponse;
+
 @RestController
 public class UploadController {
 
@@ -20,15 +22,19 @@ public class UploadController {
 	String FODER;
 
 	@PostMapping("/api/upload")
-	public String upload(@RequestParam("upload") MultipartFile file) throws IOException {
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public CKEditorUploadResponse upload(@RequestParam("upload") MultipartFile file) throws IOException {
+//		try {
+//			Thread.sleep(200);
+//		} catch (InterruptedException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+		CKEditorUploadResponse a = new CKEditorUploadResponse();
 		if (file.isEmpty()) {
-			return "No file was selected for upload.";
+			a.setError("No file was selected for upload.");
+			a.setUploaded(0);
+			
+			return a;
 		}
 
 		try {
@@ -50,10 +56,16 @@ public class UploadController {
 			// Save the uploaded file to the specified location
 			Path filePath = directory.resolve(fileName);
 			Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
-			return "File uploaded successfully.";
+			
+			a.setError("File uploaded successfully.");
+			a.setUploaded(1);
+			a.setUrl("/"+FODER+"/"+fileName);
+			a.setFileName(fileName);
+			return a;
 		} catch (IOException e) {
-			return "Failed to upload the file: " + e.getMessage();
+			a.setError("Failed to upload the file: " + e.getMessage());
+			a.setUploaded(0);
+			return a;
 		}
 	}
 

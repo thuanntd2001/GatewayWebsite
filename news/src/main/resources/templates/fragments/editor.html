@@ -13,7 +13,10 @@
             <h6 th:text="${subject} ?: Subject + ' - ' + ${#calendars.format(time, 'dd/MM/YY')}" class="card-subtitle text-muted mb-2"></h6>
         </div>
         <div class="position-relative web-title-image-container">
-            <img th:hidden="${image == null}" th:src="${image}" th:alt="${title}" height="400px" class="w-100 web-title-image" id="titleImage">
+        
+            <img th:hidden="${image != null && image == null}" th:unless="${image != null && image.startsWith('http')}" th:src="@{'/images/' + ${image}}" th:alt="${title}" height="400px" class="w-100 web-title-image" id="titleImage">
+            <img th:hidden="${image != null && image == null}" th:if="${image != null && image.startsWith('http')}" th:src="${image}" th:alt="${title}" height="400px" class="w-100 web-title-image" id="titleImage">
+            
             <div th:classappend="${image} ? 'hide-control' : _" class="position-absolute w-100 web-title-image-control">
                 <div class="custom-file w-50 m-auto web-title-image-control-inner">
                     <input type="file" name="titleImage" accept="image/jpeg, image/png, image/gif" class="custom-file-input btn-success" id="title-image-input">

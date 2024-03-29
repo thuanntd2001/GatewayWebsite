@@ -22,7 +22,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		Path uploadDir = Paths.get(dirName);
 		String uploadPath = uploadDir.toFile().getAbsolutePath();
 //		String uploadPath = System.getProperty("user.dir") + File.separator + uploadDir;
-		System.out.println("file:/" + uploadPath + "/");
+	//	System.out.println("file:/" + uploadPath + "/");
 
 
 		if (dirName.startsWith("../"))

@@ -7,6 +7,8 @@ public class CKEditorUploadResponse {
     private String fileName;
 
     private String url;
+    
+    private String error;
 
     public CKEditorUploadResponse() {
     }
@@ -29,7 +31,15 @@ public class CKEditorUploadResponse {
         return fileName;
     }
 
-    public void setFileName(String fileName) {
+    public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public void setFileName(String fileName) {
         this.fileName = fileName;
     }
 
