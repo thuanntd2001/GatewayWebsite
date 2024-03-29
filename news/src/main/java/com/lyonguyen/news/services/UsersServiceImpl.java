@@ -1,15 +1,15 @@
 package com.lyonguyen.news.services;
 
+import java.util.HashSet;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.lyonguyen.news.bean.NoOpPasswordEncoder;
 import com.lyonguyen.news.models.User;
 import com.lyonguyen.news.repositories.RoleRepository;
 import com.lyonguyen.news.repositories.UsersRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashSet;
 
 @Service
 @Transactional

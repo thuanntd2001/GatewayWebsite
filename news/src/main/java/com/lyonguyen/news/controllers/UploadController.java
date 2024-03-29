@@ -6,21 +6,27 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.lyonguyen.news.models.CKEditorUploadResponse;
-import com.lyonguyen.news.services.StorageService;
-
 @RestController
 public class UploadController {
 
+	@Value("${webapp.uploadfolder}")
+	String FODER;
+
 	@PostMapping("/api/upload")
 	public String upload(@RequestParam("upload") MultipartFile file) throws IOException {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (file.isEmpty()) {
 			return "No file was selected for upload.";
 		}
@@ -30,7 +36,7 @@ public class UploadController {
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
 			// Define the upload directory relative to the application's current directory
-			String uploadDir = "images";
+			String uploadDir = FODER;
 
 			// Get the absolute path of the upload directory
 			String uploadPath = System.getProperty("user.dir") + File.separator + uploadDir;

@@ -1,16 +1,16 @@
 package com.lyonguyen.news.services;
 
-import com.lyonguyen.news.models.News;
-import com.lyonguyen.news.repositories.ArticlesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import com.lyonguyen.news.models.News;
+import com.lyonguyen.news.repositories.ArticlesRepository;
 
 @Service
 @Transactional
