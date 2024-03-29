@@ -1,17 +1,20 @@
 package com.lyonguyen.news.controllers;
 
-import com.lyonguyen.news.models.Article;
-import com.lyonguyen.news.models.News;
-import com.lyonguyen.news.services.ArticlesService;
-import com.lyonguyen.news.services.NewsService;
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+import com.lyonguyen.news.models.Article;
+import com.lyonguyen.news.services.ArticlesService;
 
 @RestController
 @RequestMapping("/api/article")
@@ -21,7 +24,7 @@ public class ArticlesController {
     private ArticlesService articlesService;
 
     @PostMapping
-    public ResponseEntity createArticle(@RequestBody Article article) {
+    public ResponseEntity<?> createArticle(@RequestBody Article article) {
 
         Article savedArticle = articlesService.create(article);
 
@@ -32,7 +35,7 @@ public class ArticlesController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateArticle(@RequestBody Article article,
+    public ResponseEntity<?> updateArticle(@RequestBody Article article,
                                        @PathVariable("id") Long id) {
         article.setId(id);
 
@@ -46,7 +49,7 @@ public class ArticlesController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteArticle(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteArticle(@PathVariable("id") Long id) {
 
         articlesService.delete(id);
 

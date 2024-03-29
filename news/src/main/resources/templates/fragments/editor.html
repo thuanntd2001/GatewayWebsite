@@ -3,8 +3,8 @@
 <body>
     <div th:fragment="editor (id, title, subject, time, image, brief, content)" th:with="time=${time ?: #calendars.createNow()}" class="card position-relative box-shadow">
         <input th:value="${id}" type="hidden" name="articleId" id="articleId">
-        <input th:value="${#calendars.format(time, 'yyyy-MM-dd')}" type="date" name="time" id="articleDate" hidden>
-        <input th:value="${#calendars.format(time, 'HH:mm:ss.SSS')}" type="time" name="time" id="articleTime" hidden>
+        <input th:value="${#calendars.format(time, 'yyyy-MM-dd')}" type="date" name="time" id="articleDate" hidden=true>
+        <input th:value="${#calendars.format(time, 'HH:mm:ss.SSS')}" type="time" name="time" id="articleTime" hidden=true>
         <div class="position-absolute bg-success py-1 pr-2 pl-3 web-article-subject">
             <h4 th:text="${subject} ?: Subject" class="m-0"></h4>
         </div>
@@ -18,6 +18,9 @@
                 <div class="custom-file w-50 m-auto web-title-image-control-inner">
                     <input type="file" name="titleImage" accept="image/jpeg, image/png, image/gif" class="custom-file-input btn-success" id="title-image-input">
                     <label class="custom-file-label" for="title-image-input">Choose file</label>
+                    
+                    <input type="text" name="titleImage2"  id="urlImage">
+                    <label class="custom-file-label" for="title-image-input">Or choose image url</label>
                 </div>
             </div>
         </div>

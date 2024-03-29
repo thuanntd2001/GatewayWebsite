@@ -41,7 +41,11 @@
         <div class="position-absolute bg-success py-1 pr-2 pl-3 web-article-subject">
             <h4 th:text="${subject}" class="m-0"></h4>
         </div>
-        <a class="position-absolute btn btn-warning web-article-edit-btn" href="#" th:href="@{'/editor/' + ${id}}"><i class="fas fa-pencil-alt"></i></a>
+        
+        
+        <a th:if="${@securityServiceImpl.isLoggedIn()}" class="position-absolute btn btn-warning web-article-edit-btn" href="#" th:href="@{'/editor/' + ${id}}"><i class="fas fa-pencil-alt"></i></a>
+        
+        
         <div class="card-body web-article">
             <h3 th:text="${title}" class="card-title"></h3>
             <h6 th:text="${subject} + ' - ' + ${#calendars.format(time, 'dd/MM/YY')}" class="card-subtitle text-muted mb-2"></h6>

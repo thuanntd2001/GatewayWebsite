@@ -1,126 +1,45 @@
 //package com.lyonguyen.news.services;
 //
-//import com.google.api.client.auth.oauth2.Credential;
-//import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-//import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-//import com.google.api.client.http.HttpTransport;
-//import com.google.api.client.http.InputStreamContent;
-//import com.google.api.client.json.jackson2.JacksonFactory;
-//import com.google.api.client.json.JsonFactory;
+//import java.io.FileNotFoundException;
+//import java.io.IOException;
+//import java.io.InputStream;
 //
-//import com.google.api.services.drive.DriveScopes;
-//import com.google.api.services.drive.model.*;
-//import com.google.api.services.drive.Drive;
 //import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.core.io.ClassPathResource;
 //import org.springframework.core.io.Resource;
 //import org.springframework.core.io.UrlResource;
 //import org.springframework.stereotype.Service;
 //
-//import javax.annotation.PostConstruct;
-//import java.io.IOException;
-//import java.io.InputStream;
-//import java.util.Arrays;
-//import java.util.Collections;
-//import java.util.List;
+//
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+//
 //
 //
 //@Service
-//public class GoogleDriveServiceImpl implements GoogleDriveService {
+//public class GoogleDriveServiceImpl implements StorageService {
 //
-//    @Value("${webapp.name}")
-//    private String APPLICATION_NAME;
+//	@Value("${webapp.uploadfolder}")
+//	private String FOLDER;
 //
-//    @Value("${webapp.drive.service-account}")
-//    private String SERVICE_ACCOUNT;
+//	public Resource write(String name, InputStream file) throws IOException {
+//		// Load the file from a specific location (e.g., "images" directory)
+//		String uploadDir = FOLDER;
+//		Path filePath = Path.of(uploadDir).resolve(fileName);
+//		Resource resource = new UrlResource(filePath.toUri());
 //
-//    @Value("${webapp.drive.credentials}")
-//    private String CREDENTIALS_JSON;
+//		if (resource.exists() && resource.isReadable()) {
+//			return resource;
+//		} else {
+//			throw new FileNotFoundException("File not found: " + fileName);
+//		}
+//	}
 //
-//    @Value("${webapp.drive.folder-id}")
-//    private String FOLDER_ID;
+//	@Override
+//	public Resource read(String name) {
+//		return null;
+//	}
 //
-//    private HttpTransport HTTP_TRANSPORT;
-//
-//    private JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-//
-//    private final List<String> SCOPES = Arrays.asList(DriveScopes.DRIVE);
-//
-//    private Drive service;
-//
-//    @PostConstruct
-//    public void init() throws Exception {
-//        HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-//
-//        service = getDriveService();
-//
-//        listAll();
-//    }
-//
-//    private Credential getCredential() throws IOException {
-//        InputStream inputStream = new ClassPathResource(CREDENTIALS_JSON).getInputStream();
-//
-//        GoogleCredential credential = GoogleCredential
-//                .fromStream(inputStream)
-//                .createScoped(SCOPES);
-//        GoogleCredential.Builder builder = new GoogleCredential.Builder()
-//                .setTransport(HTTP_TRANSPORT)
-//                .setJsonFactory(JSON_FACTORY)
-//                .setServiceAccountScopes(SCOPES)
-//                .setServiceAccountId(credential.getServiceAccountId())
-//                .setServiceAccountPrivateKey(credential.getServiceAccountPrivateKey())
-//                .setServiceAccountPrivateKeyId(credential.getServiceAccountPrivateKeyId())
-//                .setTokenServerEncodedUrl(credential.getTokenServerEncodedUrl())
-//                .setServiceAccountUser(SERVICE_ACCOUNT);
-//
-//        return builder.build();
-//    }
-//
-//    private Drive getDriveService() throws IOException {
-//        Credential credential = getCredential();
-//
-//        return new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-//                    .setApplicationName(APPLICATION_NAME)
-//                    .build();
-//    }
-//
-//    public Resource write(String name, InputStream file) throws IOException {
-//        File fileMetadata = new File();
-//        fileMetadata.setName(name);
-//        fileMetadata.setParents(Collections.singletonList(FOLDER_ID));
-//
-//        InputStreamContent mediaContent = new InputStreamContent(null, file);
-//
-//        File uploadedFile = service.files()
-//                .create(fileMetadata, mediaContent)
-//                .setFields("id")
-//                .setFields("webContentLink")
-//                .execute();
-//
-//        return new UrlResource(uploadedFile.getWebContentLink());
-//    }
-//
-//    @Override
-//    public Resource read(String name) {
-//        return null;
-//    }
-//
-//    public void listAll() throws Exception {
-//        Drive service = getDriveService();
-//        System.out.println(service.about().get());
-//
-//        FileList result = service.files().list()
-//                .setPageSize(10)
-//                .setFields("nextPageToken, files(id, name)")
-//                .execute();
-//        List<File> files = result.getFiles();
-//        if (files == null || files.size() == 0) {
-//            System.out.println("No files found.");
-//        } else {
-//            System.out.println("Files:");
-//            for (File file : files) {
-//                System.out.printf("%s (%s)\n", file.getName(), file.getId());
-//            }
-//        }
-//    }
 //}

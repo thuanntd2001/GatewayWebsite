@@ -1,5 +1,6 @@
 package com.lyonguyen.news.services;
 
+import com.lyonguyen.news.bean.NoOpPasswordEncoder;
 import com.lyonguyen.news.models.User;
 import com.lyonguyen.news.repositories.RoleRepository;
 import com.lyonguyen.news.repositories.UsersRepository;
@@ -18,12 +19,21 @@ public class UsersServiceImpl implements UsersService {
     private UsersRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+//    @Autowired
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+//    @Override
+//    public void save(User user) {
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        user.setRoles(new HashSet<>(roleRepository.findAll()));
+//        userRepository.save(user);
+//    }
+    
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private NoOpPasswordEncoder noEncoder;
 
     @Override
     public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(noEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>(roleRepository.findAll()));
         userRepository.save(user);
     }

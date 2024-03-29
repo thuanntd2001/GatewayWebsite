@@ -26,8 +26,8 @@
 <body>
     <nav th:fragment="header" class="navbar navbar-dark bg-dark web-header">
         <div class="container">
-            <a href="#" class="navbar-brand web-brand">ICSSE</a>
-            <span class="navbar-text">IEEE International Conference on System Science and Engineering</span>
+            <a href="#" class="navbar-brand web-brand">Gateway</a>
+            <span class="navbar-text">Cập nhật nhanh chóng, kịp thời tình hình thế giới WB</span>
             <form class="form-inline" action="/" method="GET">
                 <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-white my-2 my-sm-0 mr-sm-2" type="submit"><i class="fas fa-search"></i></button>
@@ -48,7 +48,7 @@
                 <a href="#" class="nav-link">Keynote Speakers</a>
                 <a href="#" class="nav-link">Program</a>
                 <a href="#" class="nav-link">Publication</a>
-                <a href="#" class="nav-link">Venue & Hotel</a>
+                <a href="#" class="nav-link">Logistics</a>
                 <a href="#" class="nav-link">Gallery</a>
                 <a href="#" class="nav-link">Contact</a>
                 <a th:if="${@securityServiceImpl.isLoggedIn()}" href="/editor" class="nav-link">New Article</a>

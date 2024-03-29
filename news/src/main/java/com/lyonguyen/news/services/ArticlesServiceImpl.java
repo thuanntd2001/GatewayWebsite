@@ -1,15 +1,15 @@
 package com.lyonguyen.news.services;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.lyonguyen.news.exceptions.BadRequestException;
 import com.lyonguyen.news.exceptions.NotFoundException;
 import com.lyonguyen.news.models.Article;
 import com.lyonguyen.news.repositories.ArticlesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-
-import java.util.Optional;
 
 @Service
 @Transactional
