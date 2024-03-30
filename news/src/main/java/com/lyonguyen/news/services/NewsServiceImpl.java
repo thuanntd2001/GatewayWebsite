@@ -24,7 +24,8 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public Page<News> getNewsPage(int page) {
-        Pageable pageable = new QPageRequest(page, pageSize);
+        @SuppressWarnings("deprecation")
+		Pageable pageable = new QPageRequest(page, pageSize);
 
         Page<News> news = articlesRepository.findAllByOrderByTimeDesc(pageable);
 
@@ -40,7 +41,8 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public Page<News> searchNews(String key, int page) {
-        Pageable pageable = new QPageRequest(page, pageSize);
+        @SuppressWarnings("deprecation")
+		Pageable pageable = new QPageRequest(page, pageSize);
 
         Page<News> news;
 

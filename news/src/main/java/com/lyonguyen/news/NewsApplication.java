@@ -22,7 +22,7 @@ public class NewsApplication {
 	@Bean
     public Random random() { return new Random(); }
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException{
 		SpringApplication.run(NewsApplication.class, args);
 	}
 }
