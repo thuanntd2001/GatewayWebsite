@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title th:text="${title}">Cập nhật nhanh chóng, kịp thời tình hình thế giới WB</title>
+    <title th:text="${title}">Cập nhật nhanh chóng, kịp thời tình hình thế giới</title>
+    
+      <link rel="icon" type="image/x-icon" th:href="@{/imgs/favicon.ico}" />
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" th:href="@{/styles/global.css}">
 
     <!-- Bootstrap and jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -26,8 +28,11 @@
 <body>
     <nav th:fragment="header" class="navbar navbar-dark bg-dark web-header">
         <div class="container">
-            <a href="#" class="navbar-brand web-brand">Gateway</a>
-            <span class="navbar-text">Cập nhật nhanh chóng, kịp thời tình hình thế giới WB</span>
+        <a href="#" class="navbar-brand web-brand">
+            <img th:src="@{/imgs/logo512.png}" alt="Gateway" class="logo-image" style="width: 200px;">
+        </a>
+            
+            <span class="navbar-text">Cập nhật nhanh chóng, kịp thời tình hình thế giới</span>
             <form class="form-inline" action="/" method="GET">
                 <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-white my-2 my-sm-0 mr-sm-2" type="submit"><i class="fas fa-search"></i></button>
@@ -43,12 +48,13 @@
         <div class="container">
             <nav class="nav">
                 <a href="/" class="nav-link">Home</a>
+                <a href="https://gatewayviet.com" class="nav-link">Logistics</a>
+                
                 <a href="#" class="nav-link">About</a>
                 <a href="#" class="nav-link">For Author</a>
                 <a href="#" class="nav-link">Keynote Speakers</a>
                 <a href="#" class="nav-link">Program</a>
                 <a href="#" class="nav-link">Publication</a>
-                <a href="#" class="nav-link">Logistics</a>
                 <a href="#" class="nav-link">Gallery</a>
                 <a href="#" class="nav-link">Contact</a>
                 <a th:if="${@securityServiceImpl.isLoggedIn()}" href="/editor" class="nav-link">New Article</a>

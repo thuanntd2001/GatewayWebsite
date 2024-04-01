@@ -1,0 +1,39 @@
+sudo docker build -t fe4 .
+sudo docker tag fe4 thuanntd2001/gwfe3
+sudo docker push thuanntd2001/gwfe3
+
+
+sudo docker build -t gwfessl .
+sudo docker tag gwfessl thuanntd2001/gwfessl
+sudo docker push thuanntd2001/gwfessl
+
+
+ssh root@gatewayviet.com
+
+podman pull thuanntd2001/gwfessl
+podman ps -a
+
+podman rm -f fessl
+
+sudo docker rm -f fessl
+
+sudo podman run --name fessl -d -v /etc/letsencrypt/live/gatewayviet.com:/etc/letsencrypt/live/gatewayviet.com --network host docker.io/thuanntd2001/gwfessl
+
+sudo docker run --name fessl -d -v /etc/letsencrypt/live/gatewayviet.com:/etc/letsencrypt/live/gatewayviet.com --network host docker.io/thuanntd2001/gwfessl
+
+podman logs fessl
+
+sudo podman exec -it fessl sh
+
+
+
+
+
+
+scp -r ./build root@gatewayviet.com:/root
+
+serve -s build -l 443 --ssl-cert /etc/letsencrypt/live/gatewayviet.com/cert.pem --ssl-key /etc/letsencrypt/live/gatewayviet.com/privkey.pem
+
+nohup serve -s build -l 443 --ssl-cert /etc/letsencrypt/live/gatewayviet.com/cert.pem --ssl-key /etc/letsencrypt/live/gatewayviet.com/privkey.pem &
+
+scp -r root@api.gatewayviet.com:/root/photos .
