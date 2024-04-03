@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title th:text="${title}">Cập nhật nhanh chóng, kịp thời tình hình thế giới</title>
+    <title th:text="${title}">Cập nhật nhanh chóng, kịp thời</title>
     
       <link rel="icon" type="image/x-icon" th:href="@{/imgs/favicon.ico}" />
 
@@ -32,7 +32,7 @@
             <img th:src="@{/imgs/logo512.png}" alt="Gateway" class="logo-image" style="width: 200px;">
         </a>
             
-            <span class="navbar-text">Cập nhật nhanh chóng, kịp thời tình hình thế giới</span>
+            <span class="navbar-text">Cập nhật nhanh chóng, kịp thời, chính xác</span>
             <form class="form-inline" action="/" method="GET">
                 <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-white my-2 my-sm-0 mr-sm-2" type="submit"><i class="fas fa-search"></i></button>
@@ -47,12 +47,10 @@
     <div th:fragment="navbar" class="bg-light">
         <div class="container">
             <nav class="nav">
-                <a href="/" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Trang chủ</a>
                 <a href="https://gatewayviet.com" class="nav-link">Logistics</a>
-                
                 <a href="#" class="nav-link">About</a>
                 <a href="#" class="nav-link">For Author</a>
-                <a href="#" class="nav-link">Keynote Speakers</a>
                 <a href="#" class="nav-link">Program</a>
                 <a href="#" class="nav-link">Publication</a>
                 <a href="#" class="nav-link">Gallery</a>
@@ -65,7 +63,7 @@
         <div class="container py-2">
             <div id="slide-show" class="carousel slide box-shadow" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li th:each="index : ${#numbers.sequence(0, #lists.size(latestNews))}"
+                    <li th:each="index : ${#numbers.sequence(0, #lists.size(latestNews)-1)}"
                         data-target="#slide-show" th:data-slide-to="${index}" th:classappend="${index == 0 ? 'active' : _}"></li>
                     <!--<li data-target="#slide-show" data-slide-to="0" class="active"></li>-->
                     <!--<li data-target="#slide-show" data-slide-to="1"></li>-->
@@ -77,7 +75,7 @@
                         <img th:if="${news.image.startsWith('http')}" class="d-block w-100" th:src="${news.image}" th:alt="${news.title}" height="500px">
                         
                         <div class="carousel-caption d-none d-md-block px-5 web-slide-caption">
-                            <a th:href="@{'/article/' + ${news.id}}"><h5 th:text="${news.title}" class="text-white"></h5></a>
+                            <a th:href="@{'/article/' + ${news.id}}"><h4 th:text="${news.title}" class="text-white"></h4></a>
                             <p th:text="${news.brief}"></p>
                         </div>
                     </div>

@@ -39,6 +39,10 @@ $(function() {
 
 		var imageSrc = $('#titleImage').attr('src');
 		var imageUrl = ($('#urlImage').val() !== null && $('#urlImage').val() !== '') ?  $('#urlImage').val():imageSrc ;
+		
+		if (imageUrl.startsWith("/images/")){
+			imageUrl=imageUrl.replace("/images/", "");
+		}
 
 		var article = {
 			title: CKEDITOR.instances.titleEditor.editable().getText(),

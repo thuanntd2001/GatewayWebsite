@@ -45,6 +45,10 @@ public class ArticlesServiceImpl implements ArticlesService {
         if (!articlesRepository.existsById(article.getId())) {
             throw new NotFoundException();
         }
+        if (article.getImage() == null || article.getImage().strip() == "")
+        {
+        	article.setImage(articlesRepository.findById(article.getId()).get().getImage());
+        }
 
         return articlesRepository.save(article);
     }
