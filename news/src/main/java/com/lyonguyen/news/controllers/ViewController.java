@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lyonguyen.news.enums.Subject;
 import com.lyonguyen.news.models.Article;
 import com.lyonguyen.news.models.News;
 import com.lyonguyen.news.services.ArticlesService;
@@ -61,6 +62,8 @@ public class ViewController {
     @GetMapping("editor")
     public String createArticle(Model model) {
         model.addAttribute("article", new Article());
+        model.addAttribute("subjects", Subject.getAllSubjectWithSpace());
+
 
         return "editor";
     }
@@ -71,6 +74,8 @@ public class ViewController {
         Article article = articlesService.get(id);
 
         model.addAttribute("article", article);
+        model.addAttribute("subjects", Subject.getAllSubjectWithSpace());
+
 
         return "editor";
     }

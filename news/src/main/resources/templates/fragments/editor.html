@@ -11,6 +11,11 @@
         <div class="card-body web-article">
             <h3 th:text="${title}" id="titleEditor" class="card-title rounded border" contenteditable="true"></h3>
             <h6 th:text="${subject} ?: Subject + ' - ' + ${#calendars.format(time, 'dd/MM/YY')}" class="card-subtitle text-muted mb-2"></h6>
+             <select id="article-subject">
+<!--             <option th:each="value : ${subjects}" th:value="${value.subject}" th:text="${value.subjectAndSpace}"></option>
+ -->                        <option th:each="value : ${subjects}" th:value="${value}" th:text="${value}"></option>
+            
+        </select>
         </div>
         <div class="position-relative web-title-image-container">
         
@@ -19,7 +24,7 @@
             
             <div th:classappend="${image} ? 'hide-control' : _" class="position-absolute w-100 web-title-image-control">
                 <div class="custom-file w-50 m-auto web-title-image-control-inner">
-                    <input type="file" name="titleImage" accept="image/jpeg, image/png, image/gif" class="custom-file-input btn-success" id="title-image-input">
+                    <input type="file" name="titleImage" accept="image/jpeg, image/png, image/gif, image/jpg" class="custom-file-input btn-success" id="title-image-input">
                     <label class="custom-file-label" for="title-image-input">Choose file</label>
                     
                     <input type="text" name="titleImage2"  id="urlImage">

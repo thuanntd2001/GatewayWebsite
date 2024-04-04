@@ -46,7 +46,7 @@ $(function() {
 
 		var article = {
 			title: CKEDITOR.instances.titleEditor.editable().getText(),
-			subject: 'Mobile',
+			subject: $('#article-subject').val(),
 			time: new Date($('#articleDate').val() + ' ' + $('#articleTime').val()),
 			image: imageUrl,
 			brief: CKEDITOR.instances.briefEditor.editable().getText(),
