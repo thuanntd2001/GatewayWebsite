@@ -123,7 +123,7 @@
 
     function resetTimer() {
         clearInterval(slideTimer); // Xóa bỏ biến thời gian hiện tại
-        startTimer(); // Bắt đầu lại đếm thời gian từ đầu
+        //setTimeout(startTimer, 5000); // Bắt đầu lại đếm thời gian sau 1 chu kỳ (5000ms)
     }
 
     window.onload = startTimer; // Bắt đầu đếm ngay khi trang được tải
