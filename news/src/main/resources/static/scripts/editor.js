@@ -1,6 +1,7 @@
 $(function() {
 	$('#title-image-input').change(function() {
 		var input = this;
+
 		if (input.files[0]) {
 			var formData = new FormData();
 			formData.append("upload", this.files[0])
@@ -21,16 +22,24 @@ $(function() {
 					$('.web-title-image-control-inner > label').text('Choose file');
 				},
 				success: function(data) {
+					var ths1="/images/";
+					var ths2="";
 					$('.web-title-image').attr('src', data.fileName);
 					$('.web-title-image').attr('hidden', false);
+					$('#titleImage').attr('src', ths1+data.fileName+ths2);
+
 					alert("Upload success");
 				},
 				error: function(xhr, textStatus, errorThrown) {
 					$('.web-title-image-control-inner > label').text(textStatus || errorThrown);
+					alert("Upload Fail :(  ");
+
 				}
 			});
 		}
 	});
+
+	
 
 	$('#editorSave').click(function() {
 		var button = this;
@@ -38,10 +47,10 @@ $(function() {
 		var id = $('#articleId').val();
 
 		var imageSrc = $('#titleImage').attr('src');
-		var imageUrl = ($('#urlImage').val() !== null && $('#urlImage').val() !== '') ?  $('#urlImage').val():imageSrc ;
-		
-		if (imageUrl.startsWith("/images/")){
-			imageUrl=imageUrl.replace("/images/", "");
+		var imageUrl = ($('#urlImage').val() !== null && $('#urlImage').val() !== '') ? $('#urlImage').val() : imageSrc;
+
+		if (imageUrl.startsWith("/images/")) {
+			imageUrl = imageUrl.replace("/images/", "");
 		}
 
 		var article = {
