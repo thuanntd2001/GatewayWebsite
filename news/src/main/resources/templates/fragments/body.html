@@ -88,27 +88,27 @@
     </div>
 
     <div th:fragment="newsfeed (newsStream, newsAside)" class="container web-content">
-        <h3 id="news" class="mt-lg-4 mt-3">News</h3>
+        <h3 id="news" class="mt-lg-4 mt-3">Tin tức</h3>
         <div class="row">
             <div class="col-lg-8">
                 <div th:replace="::news-stream (${newsStream})"></div>
             </div>
             <div class="col-lg-4">
-                <div th:insert="::news-aside ('Popular news', ${newsAside})" class="mb-3"></div>
-                <div th:insert="::news-aside ('Lastest news', ${newsAside})" class="mb-3"></div>
+                <div th:insert="::news-aside ('Tin nổi bật', ${newsAside})" class="mb-3"></div>
+                <div th:insert="::news-aside ('Tin mới nhất', ${newsAside})" class="mb-3"></div>
             </div>
         </div>
     </div>
 
     <div th:fragment="search (newsStream, newsAside)" class="container web-content">
-        <h3 id="news" class="mt-lg-4 mt-3">Search Results</h3>
+        <h3 id="news" class="mt-lg-4 mt-3">Kết quả</h3>
         <div class="row">
             <div class="col-lg-8">
                 <form class="form-group mb-1" action="/" method="GET">
                     <div class="input-group">
                         <input th:value="${param.search}" class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
                         <span class="input-group-btn">
-                            <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+                            <button class="btn btn-info my-2 my-sm-0" type="submit">Tìm kiếm</button>
                         </span>
                     </div>
                 </form>
@@ -148,7 +148,7 @@
 
     <div th:fragment="login" class="container d-flex align-items-center web-content">
         <div class="m-auto web-login-panel">
-            <h1 class="display-4 text-center mb-5">Login</h1>
+            <h1 class="display-4 text-center mb-5">Đăng nhập</h1>
             <form th:action="@{/login}" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>

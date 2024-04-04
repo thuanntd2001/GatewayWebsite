@@ -41,7 +41,7 @@
 				chính xác</span>
 			<form class="form-inline" action="/" method="GET">
 				<input class="form-control mr-sm-2" name="search" type="search"
-					placeholder="Search" aria-label="Search">
+					placeholder="Tìm kiếm" aria-label="Search">
 				<button class="btn btn-white my-2 my-sm-0 mr-sm-2" type="submit">
 					<i class="fas fa-search"></i>
 				</button>
@@ -61,14 +61,18 @@
 	<div th:fragment="navbar" class="bg-light">
 		<div class="container">
 			<nav class="nav">
-				<a href="/" class="nav-link">Trang chủ</a> <a
-					href="https://gatewayviet.com" class="nav-link">Logistics</a> <a
-					href="#" class="nav-link">About</a> <a href="#" class="nav-link">For
-					Author</a> <a href="#" class="nav-link">Program</a> <a href="#"
-					class="nav-link">Publication</a> <a href="#" class="nav-link">Gallery</a>
-				<a href="#" class="nav-link">Contact</a> <a
+				<a href="/" class="nav-link">Trang chủ</a>
+				 <a
+					href="https://gatewayviet.com" class="nav-link">Logistics</a> 
+				<a
+					href="https://gatewayviet.com/about-us" class="nav-link">Về Gateway</a> 
+				<a href="https://gatewayviet.com/product" class="nav-link">Sản phẩm</a> 
+				<a href="https://gatewayviet.com/gallery" class="nav-link">Thư viện ảnh</a>
+				<a href="https://gatewayviet.com/contact" class="nav-link">Liên hệ</a>
+								<!-- <a href="#" class="nav-link">For Author</a> -->
+				 <a 
 					th:if="${@securityServiceImpl.isLoggedIn()}" href="/editor"
-					class="nav-link">New Article</a>
+					class="nav-link">Thêm bài viết</a>
 			</nav>
 		</div>
 	</div>
